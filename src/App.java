@@ -8,6 +8,8 @@ import javafx.stage.Stage;
 
 public class App extends Application {
     private Pane root;
+    private static final int WIDTH = 1000;
+    private static final int HEIGHT = 1000;
     @Override
     public void start(Stage primaryStage) throws Exception {
         Scene scene = new Scene(createPanel());
@@ -28,8 +30,16 @@ public class App extends Application {
     }
     private Parent createPanel(){
         root = new Pane();
-        root.setPrefSize(1000,1000);
+        root.setPrefSize(WIDTH,HEIGHT);
         return root;
 
+    }
+
+    public static int getWIDTH() {
+        return WIDTH;
+    }
+
+    public static int getHEIGHT() {
+        return HEIGHT;
     }
 }

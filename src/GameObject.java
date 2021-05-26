@@ -8,7 +8,7 @@ public class GameObject {
     private ImageView sprite;
     private Tag tag;
 
-    public GameObject(double x, double y){
+    public GameObject(){
         init();
         GameEngine.getEngine().addGameObject(this);
     }
