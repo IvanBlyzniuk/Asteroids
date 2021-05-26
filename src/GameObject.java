@@ -7,6 +7,7 @@ public class GameObject {
     private Point2D speed;
     private ImageView sprite;
     private Tag tag;
+    private double hitBoxSize;
 
     public GameObject(){
         init();
@@ -41,6 +42,14 @@ public class GameObject {
         return speed;
     }
 
+    public void setX(double x){
+        sprite.setX(x);
+    }
+
+    public void setY(double y){
+        sprite.setY(y);
+    }
+
     public double getX(){
         return sprite.getX();
     }
@@ -67,5 +76,13 @@ public class GameObject {
 
     public Tag getTag(){
         return tag;
+    }
+
+    public double getHitBoxSize() {
+        return hitBoxSize;
+    }
+
+    public void setHitBoxSize(double hitBoxSize) {
+        this.hitBoxSize = hitBoxSize;
     }
 }
