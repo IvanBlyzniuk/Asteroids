@@ -3,7 +3,7 @@ public class SpaceShip extends GameObject{
     public SpaceShip() {
         Init();
     }
-    public void Init(){
+    public void init(){
         setSprite("SpaceShacal.png");
         setX(App.getWIDTH()/2);
         setY(App.getHEIGHT()/2);
