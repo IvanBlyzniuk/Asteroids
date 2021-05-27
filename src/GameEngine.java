@@ -1,42 +1,55 @@
 import com.sun.javafx.tk.quantum.MasterTimer;
 import javafx.animation.AnimationTimer;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
+import javafx.util.Duration;
 
 import java.util.ArrayList;
 
 public class GameEngine {
 
-    public static final int frameLength = 500;
+    public static final int frameLength = 16;
 
     private static GameEngine theEngine = new GameEngine();
 
     private static ArrayList<GameObject> gameObjects = new ArrayList<>();
 
+    private static LevelManager manager;
+
     private static boolean end;
+
+    private static int iter = 0;
 
     private GameEngine(){
 
     }
 
     public static void startGame(){
-        addGameObject(LevelManager.getManager());
-        LevelManager.getManager().initGame();
-        while(!end){
-            System.out.println("1");
-            for (GameObject obj: gameObjects){
-                obj.update();
+        LevelManager.initManager();
+        manager = LevelManager.getManager();
+        System.out.println(manager);
+    }
+
+    public static void update(){
+//        System.out.println("Iter: "+iter++);
+        for (GameObject obj: gameObjects){
+//            System.out.println(obj.getClass());
+            obj.outerUpdate();
+            if(obj != manager)
                 checkCollisions(obj);
-                try{
-                    Thread.sleep(frameLength);
-                }catch (InterruptedException e){
-                    System.out.println(e.getMessage());
-                }
+            try{
+                Thread.sleep(frameLength);
+            }catch (InterruptedException e){
+                System.out.println(e.getMessage());
             }
         }
-    }
+    };
 
     private static void checkCollisions(GameObject obj1) {
         for (GameObject obj2: gameObjects){
-            if(obj1 != obj2 && distBetween(obj1,obj2) <= obj1.getHitBoxSize()+obj2.getHitBoxSize())
+            if(obj2 != manager && obj1 != obj2 && distBetween(obj1,obj2) <= obj1.getHitBoxSize()+obj2.getHitBoxSize())
                 obj1.onCollision(obj2);
         }
     }

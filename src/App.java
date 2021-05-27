@@ -1,3 +1,4 @@
+import javafx.animation.AnimationTimer;
 import javafx.application.Application;
 import javafx.event.EventHandler;
 import javafx.scene.Parent;
@@ -27,11 +28,20 @@ public class App extends Application {
                 }
             }
         });
-        GameEngine.startGame();
+
     }
     private Parent createPanel(){
         root = new Pane();
         root.setPrefSize(WIDTH,HEIGHT);
+        GameEngine.startGame();
+        AnimationTimer timer = new AnimationTimer() {
+            @Override
+            public void handle(long now) {
+                GameEngine.update();
+            }
+        };
+        timer.start();
+
         return root;
 
     }

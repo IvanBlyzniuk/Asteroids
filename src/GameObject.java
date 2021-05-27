@@ -1,10 +1,10 @@
-import com.sun.javafx.geom.Point2D;
+import javafx.geometry.Point2D;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
 public abstract class GameObject {
 
-    private Point2D speed;
+    private Point2D speed = new Point2D(0,0);
     private ImageView sprite;
     private Tag tag;
     private double hitBoxSize;
@@ -24,8 +24,11 @@ public abstract class GameObject {
     public abstract void update();
 
     private void move(Point2D speed) {
-        sprite.setTranslateX(sprite.getX()+speed.x);
-        sprite.setTranslateY(sprite.getY()+speed.y);
+        if(sprite != null){
+            sprite.setTranslateX(sprite.getTranslateX()+speed.getX());
+            sprite.setTranslateY(sprite.getTranslateY()+speed.getY());
+
+        }
     }
 
     public void setSprite(String url){
