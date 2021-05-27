@@ -1,6 +1,7 @@
 public class SpaceShip extends GameObject{
+    private boolean vulnerable = true;
     public SpaceShip() {
-
+        Init();
     }
     public void Init(){
         setSprite("SpaceShacal.png");
@@ -11,12 +12,14 @@ public class SpaceShip extends GameObject{
     }
 
     public void onCollision(GameObject other){
-        if(other.getTag()==Tag.asteroid){
+        if(other.getTag()==Tag.asteroid&&vulnerable){
             GameEngine.stopGame();
-        }else if(other.getTag()==Tag.astronaut){
+        }else if(other.getTag()==Tag.asteroid){
+
+        } else if(other.getTag()==Tag.astronaut){
             SceneManager.setScore(SceneManager.getScore()+5);
         }else if(other.getTag()==Tag.pickup){
-            ((Pickup)(other)).doSmth();
+            ((Pickup)(other)).upgrade();
         }
     }
 
