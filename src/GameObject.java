@@ -30,6 +30,7 @@ public abstract class GameObject {
 
     public void setSprite(String url){
         sprite = new ImageView(new Image(url));
+        App.getRoot().getChildren().add(sprite);
     }
 
     public void setSpeed(Point2D p){

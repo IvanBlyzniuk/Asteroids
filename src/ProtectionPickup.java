@@ -7,4 +7,14 @@ public class ProtectionPickup extends Pickup{
     void upgrade() {
 
     }
+
+    @Override
+    public void init() {
+
+    }
+
+    @Override
+    public void update() {
+
+    }
 }

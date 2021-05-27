@@ -7,7 +7,7 @@ import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
 public class App extends Application {
-    private Pane root;
+    private static Pane root;
     private static final int WIDTH = 1000;
     private static final int HEIGHT = 1000;
     @Override
@@ -27,6 +27,7 @@ public class App extends Application {
                 }
             }
         });
+        GameEngine.startGame();
     }
     private Parent createPanel(){
         root = new Pane();
@@ -41,5 +42,9 @@ public class App extends Application {
 
     public static int getHEIGHT() {
         return HEIGHT;
+    }
+
+    public static Pane getRoot() {
+        return root;
     }
 }

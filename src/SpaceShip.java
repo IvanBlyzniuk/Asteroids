@@ -1,5 +1,7 @@
 public class SpaceShip extends GameObject{
     private boolean vulnerable = true;
+    private double acceleration = 0.1;
+    private double speedLimit = 10;
     public SpaceShip() {
         init();
     }
@@ -25,10 +27,17 @@ public class SpaceShip extends GameObject{
         }else if(other.getTag()==Tag.asteroid){
 
         } else if(other.getTag()==Tag.astronaut){
-            SceneManager.setScore(SceneManager.getScore()+5);
+           // SceneManager.setScore(SceneManager.getScore()+5);
         }else if(other.getTag()==Tag.pickup){
             ((Pickup)(other)).upgrade();
         }
     }
 
+    public double getAcceleration() {
+        return acceleration;
+    }
+
+    public void setAcceleration(double acceleration) {
+        this.acceleration = acceleration;
+    }
 }

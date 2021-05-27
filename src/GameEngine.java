@@ -5,7 +5,7 @@ import java.util.ArrayList;
 
 public class GameEngine {
 
-    public static final int frameLength = 16;
+    public static final int frameLength = 500;
 
     private static GameEngine theEngine = new GameEngine();
 
@@ -19,7 +19,9 @@ public class GameEngine {
 
     public static void startGame(){
         addGameObject(LevelManager.getManager());
+        LevelManager.getManager().initGame();
         while(!end){
+            System.out.println("1");
             for (GameObject obj: gameObjects){
                 obj.update();
                 checkCollisions(obj);
