@@ -28,12 +28,19 @@ public class GameEngine {
                 }catch (InterruptedException e){
                     System.out.println(e.getMessage());
                 }
-
             }
         }
     }
 
-    private static void checkCollisions(GameObject obj) {
+    private static void checkCollisions(GameObject obj1) {
+        for (GameObject obj2: gameObjects){
+            if(obj1 != obj2 && distBetween(obj1,obj2) <= obj1.getHitBoxSize()+obj2.getHitBoxSize())
+                obj1.onCollision(obj2);
+        }
+    }
+
+    private static double distBetween(GameObject obj1, GameObject obj2){
+        return Math.sqrt((obj1.getX()-obj2.getX())*(obj1.getX()-obj2.getX()) + (obj1.getY()-obj2.getY())*(obj1.getY()-obj2.getY()));
     }
 
     public static void stopGame(){
