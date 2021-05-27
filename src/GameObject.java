@@ -2,7 +2,7 @@ import com.sun.javafx.geom.Point2D;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
-public class GameObject {
+public abstract class GameObject {
 
     private Point2D speed;
     private ImageView sprite;
@@ -14,16 +14,14 @@ public class GameObject {
         GameEngine.getEngine().addGameObject(this);
     }
 
-    public void init() {
-    }
+    public abstract void init();
 
     public final void outerUpdate(){
         move(speed);
         update();
     }
 
-    public void update(){
-    }
+    public abstract void update();
 
     private void move(Point2D speed) {
         sprite.setTranslateX(sprite.getX()+speed.x);
