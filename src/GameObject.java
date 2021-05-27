@@ -83,4 +83,8 @@ public abstract class GameObject {
     public void setHitBoxSize(double hitBoxSize) {
         this.hitBoxSize = hitBoxSize;
     }
+
+    public void remove(){
+        GameEngine.remove(this);
+    }
 }

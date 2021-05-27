@@ -1,18 +1,12 @@
 public class SpaceShip extends GameObject{
     private boolean vulnerable = true;
     public SpaceShip() {
-        Init();
+        init();
     }
-<<<<<<< HEAD
 
 
 
     public void init(){
-||||||| 43c2ed9
-    public void Init(){
-=======
-    public void init(){
->>>>>>> 56401b338ce9fdf59a1827d6ddd9af200ce13ffd
         setSprite("SpaceShacal.png");
         setX(App.getWIDTH()/2);
         setY(App.getHEIGHT()/2);
