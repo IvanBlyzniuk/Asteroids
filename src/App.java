@@ -20,11 +20,11 @@ public class App extends Application {
             @Override
             public void handle(KeyEvent event) {
                 switch (event.getCode()) {
-                    case W: LevelManager.getManager().onUpPressed();
-                    case S: LevelManager.getManager().onDownPressed();
-                    case A: LevelManager.getManager().onLeftPressed();
-                    case D: LevelManager.getManager().onRightPressed();
-                    case SPACE: LevelManager.getManager().onShootPressed();
+                    case W: LevelManager.getManager().onUpPressed(); break;
+                    case S: LevelManager.getManager().onDownPressed();break;
+                    case A: LevelManager.getManager().onLeftPressed();break;
+                    case D: LevelManager.getManager().onRightPressed();break;
+                    case SPACE: LevelManager.getManager().onShootPressed();break;
                 }
             }
         });

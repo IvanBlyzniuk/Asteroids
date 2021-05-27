@@ -23,7 +23,7 @@ public class LevelManager extends GameObject{
 
     @Override
     public void update() {
-
+        player.setSpeed(new Point2D(player.getSpeed().getX()*0.98,player.getSpeed().getY()*0.98));
     }
 
     public void onShootPressed(){
@@ -31,20 +31,18 @@ public class LevelManager extends GameObject{
     }
 
     public void onUpPressed(){
-        System.out.println("got input, vel = "+player.getSpeed().getX()+" ; "+player.getSpeed().getY());
-        player.setSpeed(new Point2D(player.getSpeed().getX(),player.getSpeed().getY()+1));
-//        player.setSpeed(new Point2D((float)(player.getSpeed().x+Math.cos(Math.toRadians(player.getRotation())*player.getAcceleration())),(float)(player.getSpeed().y+Math.sin(Math.toRadians(player.getRotation())*player.getAcceleration()))));
+        player.setSpeed(new Point2D(player.getSpeed().getX()-Math.cos(Math.toRadians(player.getRotation()+90))*player.getAcceleration(),player.getSpeed().getY()-Math.sin(Math.toRadians(player.getRotation()+90))*player.getAcceleration()));
     }
 
     public void onDownPressed(){
-        //player.setSpeed(new Point2D((float)(player.getSpeed().x-Math.cos(Math.toRadians(player.getRotation())*player.getAcceleration())),(float)(player.getSpeed().y-Math.sin(Math.toRadians(player.getRotation())*player.getAcceleration()))));
+        player.setSpeed(new Point2D(player.getSpeed().getX()+Math.cos(Math.toRadians(player.getRotation()+90))*player.getAcceleration(),player.getSpeed().getY()+Math.sin(Math.toRadians(player.getRotation()+90))*player.getAcceleration()));
     }
 
     public void onLeftPressed(){
-
+        player.setRotation(player.getRotation()-5);
     }
 
     public void onRightPressed(){
-
+        player.setRotation(player.getRotation()+5);
     }
 }
