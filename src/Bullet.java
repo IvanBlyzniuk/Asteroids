@@ -1,5 +1,4 @@
 public class Bullet extends GameObject{
-
     @Override
     public void init() {
         setSprite("bullet.png");
@@ -12,4 +11,5 @@ public class Bullet extends GameObject{
             this.remove();
         }
     }
+
 }
