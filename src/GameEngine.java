@@ -7,6 +7,8 @@ import javafx.event.EventHandler;
 import javafx.util.Duration;
 
 import java.util.ArrayList;
+import java.util.Queue;
+import java.util.Stack;
 
 public class GameEngine {
 
@@ -15,6 +17,8 @@ public class GameEngine {
     private static GameEngine theEngine = new GameEngine();
 
     private static ArrayList<GameObject> gameObjects = new ArrayList<>();
+
+    private static Stack<GameObject> toDelete = new Stack<>();
 
     private static LevelManager manager;
 
@@ -29,7 +33,6 @@ public class GameEngine {
     public static void startGame(){
         LevelManager.initManager();
         manager = LevelManager.getManager();
-        System.out.println(manager);
     }
 
     public static void update(){
@@ -39,6 +42,13 @@ public class GameEngine {
             obj.outerUpdate();
             if(obj != manager)
                 checkCollisions(obj);
+<<<<<<< HEAD
+=======
+        }
+        while(toDelete.size() > 0){
+            GameObject g = toDelete.pop();
+            gameObjects.remove(g);
+>>>>>>> 9260ac1fce10d47acaaac3bda0fef51a72a36562
         }
     };
 
@@ -58,7 +68,8 @@ public class GameEngine {
     }
 
     public static void remove(GameObject obj){
-        gameObjects.remove(obj);
+//        gameObjects.remove(obj);
+        toDelete.add(obj);
     }
 
      public static GameEngine getEngine(){
