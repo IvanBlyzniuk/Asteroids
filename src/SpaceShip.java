@@ -14,7 +14,8 @@ public class SpaceShip extends GameObject{
         setX(App.getWIDTH()/2);
         setY(App.getHEIGHT()/2);
         setTag(Tag.player);
-
+        getSprite().setFitWidth(50);
+        getSprite().setFitHeight(70);
     }
 
     @Override

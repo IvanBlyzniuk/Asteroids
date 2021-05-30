@@ -34,8 +34,9 @@ public class LevelManager extends GameObject{
         bullet.setY(player.getCentreY());
         bullet.setRotation(player.getRotation());
         bullet.setSpeed(new Point2D(30* Math.cos(Math.toRadians(bullet.getRotation() - 90)),30*Math.sin(Math.toRadians(bullet.getRotation() - 90))));
-        System.out.println(player.getX());
-        System.out.println(player.getY());
+//        System.out.println("Bullet speed x:"+bullet.getSpeed().getX()+" y:"+bullet.getSpeed().getY());
+//        System.out.println(player.getX());
+//        System.out.println(player.getY());
     }
 
     public void onUpPressed(){

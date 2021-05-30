@@ -11,5 +11,7 @@ public class Bullet extends GameObject{
         if(this.getX()<App.getWIDTH()||this.getX()>App.getWIDTH()||this.getY()<App.getHEIGHT()||this.getY()>App.getHEIGHT()){
             this.remove();
         }
+
+        System.out.println("Updating bullet");
     }
 }
