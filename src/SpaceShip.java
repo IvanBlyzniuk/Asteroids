@@ -24,6 +24,18 @@ public class SpaceShip extends GameObject{
         if(rechargeTimer>0){
             rechargeTimer--;
         }
+        if(getX()<-70){
+            setX(App.getWIDTH()+70);
+        }
+        if(getX()>App.getWIDTH()+70){
+            setX(-70);
+        }
+        if(getY()<-70){
+            setY(App.getHEIGHT()+70);
+        }
+        if(getY()>App.getHEIGHT()+70){
+            setY(-70);
+        }
     }
 
     public void onCollision(GameObject other){
