@@ -38,17 +38,13 @@ public class GameEngine {
     public static void update(){
 //        System.out.println("Iter: "+iter++);
         for (GameObject obj: gameObjects){
-
             obj.outerUpdate();
             if(obj != manager)
                 checkCollisions(obj);
-<<<<<<< HEAD
-=======
         }
         while(toDelete.size() > 0){
             GameObject g = toDelete.pop();
             gameObjects.remove(g);
->>>>>>> 9260ac1fce10d47acaaac3bda0fef51a72a36562
         }
     };
 
