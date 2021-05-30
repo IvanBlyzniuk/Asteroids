@@ -35,15 +35,10 @@ public class GameEngine {
     public static void update(){
 //        System.out.println("Iter: "+iter++);
         for (GameObject obj: gameObjects){
-//            System.out.println(obj.getClass());
+
             obj.outerUpdate();
             if(obj != manager)
                 checkCollisions(obj);
-            try{
-                Thread.sleep(frameLength);
-            }catch (InterruptedException e){
-                System.out.println(e.getMessage());
-            }
         }
     };
 
