@@ -19,7 +19,6 @@ public class LevelManager extends GameObject{
     @Override
     public void init() {
         player = new SpaceShip();
-        System.out.println("added player");
     }
 
     @Override
