@@ -29,7 +29,6 @@ public class GameEngine {
     public static void startGame(){
         LevelManager.initManager();
         manager = LevelManager.getManager();
-        System.out.println(manager);
     }
 
     public static void update(){
