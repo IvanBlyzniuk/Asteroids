@@ -25,8 +25,8 @@ public abstract class GameObject {
 
     private void move(Point2D speed) {
         if(sprite != null){
-            sprite.setTranslateX(sprite.getTranslateX()+speed.getX());
-            sprite.setTranslateY(sprite.getTranslateY()+speed.getY());
+            sprite.setX(sprite.getX()+speed.getX());
+            sprite.setY(sprite.getY()+speed.getY());
 
         }
     }
