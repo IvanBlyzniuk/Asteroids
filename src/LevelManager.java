@@ -6,6 +6,7 @@ public class LevelManager extends GameObject{
     private static LevelManager theManager;
 
 
+
     private LevelManager(){}
 
     public static LevelManager getManager(){
@@ -27,16 +28,16 @@ public class LevelManager extends GameObject{
     }
 
     public void onShootPressed(){
-        Bullet bullet = new Bullet();
-        bullet.getSprite().setFitWidth(10);
-        bullet.getSprite().setFitHeight(20);
-        bullet.setX(player.getCentreX());
-        bullet.setY(player.getCentreY());
-        bullet.setRotation(player.getRotation());
-        bullet.setSpeed(new Point2D(30* Math.cos(Math.toRadians(bullet.getRotation() - 90)),30*Math.sin(Math.toRadians(bullet.getRotation() - 90))));
-//        System.out.println("Bullet speed x:"+bullet.getSpeed().getX()+" y:"+bullet.getSpeed().getY());
-//        System.out.println(player.getX());
-//        System.out.println(player.getY());
+        if(player.getRechargeTimer()<=0) {
+            Bullet bullet = new Bullet();
+            player.setRechargeTimer(25);
+            bullet.getSprite().setFitWidth(10);
+            bullet.getSprite().setFitHeight(20);
+            bullet.setX(player.getCentreX());
+            bullet.setY(player.getCentreY());
+            bullet.setRotation(player.getRotation());
+            bullet.setSpeed(new Point2D(30 * Math.cos(Math.toRadians(bullet.getRotation() - 90)), 30 * Math.sin(Math.toRadians(bullet.getRotation() - 90))));
+        }
     }
 
     public void onUpPressed(){

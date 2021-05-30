@@ -36,7 +36,6 @@ public class GameEngine {
     }
 
     public static void update(){
-//        System.out.println("Iter: "+iter++);
         for (GameObject obj: gameObjects){
             obj.outerUpdate();
             if(obj != manager)
@@ -45,6 +44,7 @@ public class GameEngine {
         while(toDelete.size() > 0){
             GameObject g = toDelete.pop();
             gameObjects.remove(g);
+            App.getRoot().getChildren().remove(g.getSprite());
         }
     };
 

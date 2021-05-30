@@ -2,6 +2,7 @@ public class SpaceShip extends GameObject{
     private boolean vulnerable = true;
     private double acceleration = 1.1;
     private double speedLimit = 10;
+    private double rechargeTimer = 0;
 
     public SpaceShip() {
     }
@@ -10,9 +11,10 @@ public class SpaceShip extends GameObject{
 
     public void init(){
         setSprite("SpaceShacal.png");
-       // setRotation(90);
         setX(App.getWIDTH()/2);
         setY(App.getHEIGHT()/2);
+        getSprite().setFitWidth(50);
+        getSprite().setFitHeight(70);
         setTag(Tag.player);
         getSprite().setFitWidth(50);
         getSprite().setFitHeight(70);
@@ -20,7 +22,9 @@ public class SpaceShip extends GameObject{
 
     @Override
     public void update() {
-
+        if(rechargeTimer>0){
+            rechargeTimer--;
+        }
     }
 
     public void onCollision(GameObject other){
@@ -45,5 +49,13 @@ public class SpaceShip extends GameObject{
 
     public void setAcceleration(double acceleration) {
         this.acceleration = acceleration;
+    }
+
+    public double getRechargeTimer() {
+        return rechargeTimer;
+    }
+
+    public void setRechargeTimer(double livingTimer) {
+        this.rechargeTimer = livingTimer;
     }
 }
