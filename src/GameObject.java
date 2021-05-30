@@ -8,13 +8,9 @@ public abstract class GameObject {
     private ImageView sprite;
     private Tag tag;
     private double hitBoxSize;
-    private Point2D centre = new Point2D(0,0);
-    private double initialAngle;
 
     public GameObject(){
         init();
-        if(sprite != null)
-            centre = new Point2D(sprite.getFitWidth()/2,sprite.getFitWidth()/2);
         GameEngine.getEngine().addGameObject(this);
     }
 
@@ -52,11 +48,11 @@ public abstract class GameObject {
     }
 
     public double getCentreX(){
-        return centre.getX()+sprite.getX();
+        return sprite.getX()+sprite.getFitWidth()/2;
     }
 
     public double getCentreY(){
-        return centre.getY()+sprite.getY();
+        return sprite.getY()+ sprite.getFitHeight()/2;
     }
 
     public void setY(double y){
@@ -77,9 +73,6 @@ public abstract class GameObject {
 
     public void setRotation(double rotation){
         sprite.setRotate(rotation);
-        System.out.println("W = "+sprite.getFitWidth()+" H = "+sprite.getFitHeight());
-        double r = Math.sqrt(sprite.getFitWidth()*sprite.getFitWidth()+sprite.getFitHeight()*sprite.getFitHeight())/2;
-        centre = new Point2D(r*Math.cos(Math.toRadians(rotation)),r*Math.sin(Math.toRadians(rotation)));
     }
 
     public void onCollision(GameObject other){
@@ -108,5 +101,11 @@ public abstract class GameObject {
 
     public ImageView getSprite() {
         return sprite;
+    }
+
+    public void moveCentreTo(double x, double y){
+        double deltaX = x - getCentreX();
+        double deltaY = y - getCentreY();
+        move(new Point2D(deltaX,deltaY));
     }
 }

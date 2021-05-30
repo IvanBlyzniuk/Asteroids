@@ -10,14 +10,13 @@ public class SpaceShip extends GameObject{
 
 
     public void init(){
+//        setSprite("SpaceShacal.png");
         setSprite("SpaceShacal.png");
         setX(App.getWIDTH()/2);
         setY(App.getHEIGHT()/2);
         getSprite().setFitWidth(50);
-        getSprite().setFitHeight(70);
+        getSprite().setFitHeight(50);
         setTag(Tag.player);
-        getSprite().setFitWidth(50);
-        getSprite().setFitHeight(70);
     }
 
     @Override
