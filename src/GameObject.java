@@ -91,4 +91,8 @@ public abstract class GameObject {
     public void remove(){
         GameEngine.remove(this);
     }
+
+    public ImageView getSprite() {
+        return sprite;
+    }
 }

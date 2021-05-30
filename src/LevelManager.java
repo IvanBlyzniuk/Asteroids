@@ -28,7 +28,8 @@ public class LevelManager extends GameObject{
     }
 
     public void onShootPressed(){
-
+        Bullet bullet = new Bullet();
+        
     }
 
     public void onUpPressed(){
