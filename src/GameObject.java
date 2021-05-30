@@ -48,11 +48,11 @@ public abstract class GameObject {
     }
 
     public double getCentreX(){
-        return sprite.getX()+sprite.getFitWidth()/2;
+        return sprite.getX()+sprite.getBoundsInParent().getWidth()/2;
     }
 
     public double getCentreY(){
-        return sprite.getY()+sprite.getFitHeight()/2;
+        return sprite.getY()+sprite.getBoundsInParent().getHeight()/2;
     }
 
     public void setY(double y){

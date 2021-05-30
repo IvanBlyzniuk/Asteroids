@@ -10,7 +10,6 @@ public class SpaceShip extends GameObject{
 
     public void init(){
         setSprite("SpaceShacal.png");
-       // setRotation(90);
         setX(App.getWIDTH()/2);
         setY(App.getHEIGHT()/2);
         setTag(Tag.player);
