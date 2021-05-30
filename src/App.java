@@ -12,11 +12,14 @@ import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 
+import java.util.ArrayList;
+
 public class App extends Application {
     private static Pane root;
     private static final int WIDTH = 1000;
     private static final int HEIGHT = 700;
     Stage primaryStage = new Stage();
+    ArrayList<String> inputs = new ArrayList<>();
     public App(){
         initMainMenu();
     }
@@ -25,16 +28,30 @@ public class App extends Application {
         Scene scene = new Scene(createPanel());
         primaryStage.setScene(scene);
         primaryStage.show();
+
+
+
         scene.setOnKeyPressed(new EventHandler<KeyEvent>() {
             @Override
             public void handle(KeyEvent event) {
-                switch (event.getCode()) {
-                    case W: LevelManager.getManager().onUpPressed(); break;
-                    case S: LevelManager.getManager().onDownPressed();break;
-                    case A: LevelManager.getManager().onLeftPressed();break;
-                    case D: LevelManager.getManager().onRightPressed();break;
-                    case SPACE: LevelManager.getManager().onShootPressed();break;
-                }
+                String code = event.getCode().toString();
+                if(!inputs.contains(code))
+                    inputs.add(code);
+//                switch (event.getCode()) {
+//                    case W: LevelManager.getManager().onUpPressed();break;
+//                    case S: LevelManager.getManager().onDownPressed();break;
+//                    case A: LevelManager.getManager().onLeftPressed();break;
+//                    case D: LevelManager.getManager().onRightPressed();break;
+//                    case SPACE: LevelManager.getManager().onShootPressed();break;
+//                }
+            }
+        });
+
+        scene.setOnKeyReleased(new EventHandler<KeyEvent>() {
+            @Override
+            public void handle(KeyEvent e) {
+                String code = e.getCode().toString();
+                inputs.remove( code );
             }
         });
 
@@ -49,6 +66,10 @@ public class App extends Application {
         AnimationTimer timer = new AnimationTimer() {
             @Override
             public void handle(long now) {
+                if(inputs.contains("W")) LevelManager.getManager().onUpPressed();
+                if(inputs.contains("A")) LevelManager.getManager().onLeftPressed();
+                if(inputs.contains("D")) LevelManager.getManager().onRightPressed();
+                if(inputs.contains("S")) LevelManager.getManager().onDownPressed();
                 GameEngine.update();
             }
         };
