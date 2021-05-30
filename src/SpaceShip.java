@@ -1,6 +1,6 @@
 public class SpaceShip extends GameObject{
     private boolean vulnerable = true;
-    private double acceleration = 1;
+    private double acceleration = 1.1;
     private double speedLimit = 10;
 
     public SpaceShip() {
@@ -32,6 +32,10 @@ public class SpaceShip extends GameObject{
         }else if(other.getTag()==Tag.pickup){
             ((Pickup)(other)).upgrade();
         }
+    }
+
+    public double getSpeedLimit() {
+        return speedLimit;
     }
 
     public double getAcceleration() {
