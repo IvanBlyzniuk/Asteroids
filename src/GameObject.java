@@ -27,7 +27,6 @@ public abstract class GameObject {
         if(sprite != null){
             sprite.setX(sprite.getX()+speed.getX());
             sprite.setY(sprite.getY()+speed.getY());
-
         }
     }
 
