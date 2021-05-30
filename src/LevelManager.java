@@ -30,11 +30,10 @@ public class LevelManager extends GameObject{
     public void onShootPressed(){
         if(player.getRechargeTimer()<=0) {
             Bullet bullet = new Bullet();
-            player.setRechargeTimer(25);
+            player.setRechargeTimer(10);
             bullet.getSprite().setFitWidth(10);
-            bullet.getSprite().setFitHeight(20);
-            bullet.setX(player.getCentreX());
-            bullet.setY(player.getCentreY());
+            bullet.getSprite().setFitHeight(10);
+            bullet.moveCentreTo(player.getCentreX(), player.getCentreY());
             bullet.setRotation(player.getRotation());
             bullet.setSpeed(new Point2D(30 * Math.cos(Math.toRadians(bullet.getRotation() - 90)), 30 * Math.sin(Math.toRadians(bullet.getRotation() - 90))));
         }
