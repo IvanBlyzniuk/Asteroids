@@ -4,7 +4,7 @@ public class Asteroid extends GameObject{
     @Override
     public void init() {
         setTag(Tag.asteroid);
-
+        setHitBoxSize(50);
     }
 
     @Override
