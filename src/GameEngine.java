@@ -46,7 +46,7 @@ public class GameEngine {
             gameObjects.remove(g);
             App.getRoot().getChildren().remove(g.getSprite());
         }
-    };
+    }
 
     private static void checkCollisions(GameObject obj1) {
         for (GameObject obj2: gameObjects){
@@ -56,7 +56,7 @@ public class GameEngine {
     }
 
     private static double distBetween(GameObject obj1, GameObject obj2){
-        return Math.sqrt((obj1.getX()-obj2.getX())*(obj1.getX()-obj2.getX()) + (obj1.getY()-obj2.getY())*(obj1.getY()-obj2.getY()));
+        return Math.sqrt((obj1.getCentreX()-obj2.getCentreX())*(obj1.getCentreX()-obj2.getCentreX()) + (obj1.getCentreY()-obj2.getCentreY())*(obj1.getCentreY()-obj2.getCentreY()));
     }
 
     public static void stopGame(){
