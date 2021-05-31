@@ -23,7 +23,7 @@ public abstract class GameObject {
 
     public abstract void update();
 
-    private void move(Point2D speed) {
+    public void move(Point2D speed) {
         if(sprite != null){
             sprite.setX(sprite.getX()+speed.getX());
             sprite.setY(sprite.getY()+speed.getY());

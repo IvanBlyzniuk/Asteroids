@@ -17,7 +17,9 @@ public class Asteroid extends GameObject{
         if(other.getTag() == Tag.asteroid){
             double newVelX = (getSpeed().getX() * (getHitBoxSize() - other.getHitBoxSize()) + (2 * other.getHitBoxSize() * other.getSpeed().getX())) / (getHitBoxSize() + other.getHitBoxSize());
             double newVelY = (getSpeed().getY() * (getHitBoxSize() - other.getHitBoxSize()) + (2 * other.getHitBoxSize() * other.getSpeed().getY())) / (getHitBoxSize() + other.getHitBoxSize());
-            setSpeed(new Point2D(newVelX,newVelY));
+            Point2D newVel = new Point2D(newVelX,newVelY);
+            setSpeed(newVel);
+            move(newVel);
         }
     }
 }
