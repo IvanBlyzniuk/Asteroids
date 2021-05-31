@@ -6,9 +6,9 @@ public class LevelManager extends GameObject{
 
     private SpaceShip player;
     private static LevelManager theManager;
-    final Random random = new Random();
+    public static final Random random = new Random();
     private int asteroidsNumber = 0;
-    private int asteroidsMaxNumber = 5;
+    private int asteroidsMaxNumber = 8;
 
 
 
@@ -40,6 +40,7 @@ public class LevelManager extends GameObject{
     public void createAsteroid(){
         double x = 0;
         double y = 0;
+        int size = 0;
         int line = random.nextInt(4);
         if(line == 0){
              x = -100;
