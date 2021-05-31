@@ -1,3 +1,3 @@
 public enum Tag {
-    bullet,player,asteroid,astronaut, pickup, big, small
+    bullet,player,asteroid,astronaut, pickup, big, small, teleFraggable
 }

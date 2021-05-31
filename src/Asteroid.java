@@ -5,20 +5,20 @@ public class Asteroid extends GameObject{
     private Point2D newSpeed;
     private boolean needToChangeSpeed;
 
-    private Tag size;
     @Override
     public void init() {
         setTag(Tag.asteroid);
+        setTag(Tag.teleFraggable);
         int size = 0;
         size = LevelManager.random.nextInt(3);
         if(size == 0){
-            setSize(Tag.small);
+            setTag(Tag.small);
             setSprite("smallPepesteroid.png");
             getSprite().setFitWidth(50);
             getSprite().setFitHeight(50);
             setHitBoxSize(25);
         }else{
-            setSize(Tag.big);
+            setTag(Tag.big);
             setSprite("pepesteroid.png");
             getSprite().setFitWidth(100);
             getSprite().setFitHeight(100);
@@ -48,19 +48,15 @@ public class Asteroid extends GameObject{
         }
     }
 
-    //Если не работеет, можно делать update и checkForCollisions в GameEngine 2 разными циклами
+    //Если много склеек, можно делать move
     @Override
     public void onCollision(GameObject other){
-        if(other.getTag() == Tag.asteroid){
+        if(other.getTag().contains(Tag.asteroid)){
             double newVelX = (getSpeed().getX() * (getHitBoxSize() - other.getHitBoxSize()) + (2 * other.getHitBoxSize() * other.getSpeed().getX())) / (getHitBoxSize() + other.getHitBoxSize());
             double newVelY = (getSpeed().getY() * (getHitBoxSize() - other.getHitBoxSize()) + (2 * other.getHitBoxSize() * other.getSpeed().getY())) / (getHitBoxSize() + other.getHitBoxSize());
             Point2D newVel = new Point2D(newVelX,newVelY);
             needToChangeSpeed = true;
             newSpeed = newVel;
         }
-    }
-
-    public void setSize(Tag size) {
-        this.size = size;
     }
 }

@@ -8,7 +8,7 @@ public class LevelManager extends GameObject{
     private static LevelManager theManager;
     public static final Random random = new Random();
     private int asteroidsNumber = 0;
-    private int asteroidsMaxNumber = 8;
+    private int asteroidsMaxNumber = 20;
 
 
 

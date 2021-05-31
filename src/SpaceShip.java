@@ -39,13 +39,13 @@ public class SpaceShip extends GameObject{
     }
 
     public void onCollision(GameObject other){
-        if(other.getTag()==Tag.asteroid&&vulnerable){
+        if(other.getTag().contains(Tag.asteroid)&&vulnerable){
             GameEngine.stopGame();
-        }else if(other.getTag()==Tag.asteroid){
+        }else if(other.getTag().contains(Tag.asteroid)){
 
-        } else if(other.getTag()==Tag.astronaut){
+        } else if(other.getTag().contains(Tag.astronaut)){
            // SceneManager.setScore(SceneManager.getScore()+5);
-        }else if(other.getTag()==Tag.pickup){
+        }else if(other.getTag().contains(Tag.pickup)){
             ((Pickup)(other)).upgrade();
         }
     }
