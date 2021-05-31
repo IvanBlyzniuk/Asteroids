@@ -61,21 +61,16 @@ public class LevelManager extends GameObject{
         int angle = random.nextInt(361);
         int speed = random.nextInt(2)+1;
         Asteroid asteroid = new Asteroid();
-        asteroid.setSprite("pepesteroid.png");
-        asteroid.getSprite().setFitWidth(100);
-        asteroid.getSprite().setFitHeight(100);
-        asteroid.setRotation(angle);
         asteroid.setX(x);
         asteroid.setY(y);
-        asteroid.setSpeed(new Point2D(speed*Math.cos(Math.toRadians(asteroid.getRotation())),speed*Math.sin(Math.toRadians(asteroid.getRotation()))));
+        asteroid.setSpeedM(speed,angle);
+     //   asteroid.setSpeed(new Point2D(speed*Math.cos(Math.toRadians(asteroid.getRotation())),speed*Math.sin(Math.toRadians(asteroid.getRotation()))));
     }
 
     public void onShootPressed(){
         if(player.getRechargeTimer()<=0) {
             Bullet bullet = new Bullet();
             player.setRechargeTimer(50);
-            bullet.getSprite().setFitWidth(10);
-            bullet.getSprite().setFitHeight(10);
             bullet.moveCentreTo(player.getCentreX(), player.getCentreY());
             bullet.setRotation(player.getRotation());
             bullet.setSpeed(new Point2D(15 * Math.cos(Math.toRadians(bullet.getRotation() - 90)), 15 * Math.sin(Math.toRadians(bullet.getRotation() - 90))));
