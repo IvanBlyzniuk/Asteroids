@@ -2,12 +2,15 @@ import javafx.geometry.Point2D;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
+import java.util.ArrayList;
+
 public abstract class GameObject {
 
     private Point2D speed = new Point2D(0,0);
     private ImageView sprite;
-    private Tag tag;
+    private ArrayList<Tag> tags = new ArrayList<>();
     private double hitBoxSize;
+    private GameObject lastCollision;
 
     public GameObject(){
         init();
@@ -85,11 +88,11 @@ public abstract class GameObject {
     }
 
     public void setTag(Tag tag){
-        this.tag = tag;
+        tags.add(tag);
     }
 
-    public Tag getTag(){
-        return tag;
+    public ArrayList<Tag> getTag(){
+        return tags;
     }
 
     public double getHitBoxSize() {
@@ -112,5 +115,13 @@ public abstract class GameObject {
         double deltaX = x - getCentreX();
         double deltaY = y - getCentreY();
         move(new Point2D(deltaX,deltaY));
+    }
+
+    public void setLastCollision(GameObject other){
+        lastCollision = other;
+    }
+
+    public GameObject getLastCollision() {
+        return lastCollision;
     }
 }
