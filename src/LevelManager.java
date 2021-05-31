@@ -25,17 +25,16 @@ public class LevelManager extends GameObject{
     @Override
     public void init() {
         player = new SpaceShip();
-        createAsteroid();
     }
 
     @Override
     public void update() {
         player.setSpeed(new Point2D(player.getSpeed().getX()*0.98,player.getSpeed().getY()*0.98));
         int rand = random.nextInt(100);
-//        if(rand == 0 && asteroidsNumber<asteroidsMaxNumber){
-//            createAsteroid();
-//            asteroidsNumber++;
-//        }
+        if(rand == 0 && asteroidsNumber<asteroidsMaxNumber){
+            createAsteroid();
+            asteroidsNumber++;
+        }
     }
 
     public void createAsteroid(){
