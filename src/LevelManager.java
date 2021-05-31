@@ -7,6 +7,8 @@ public class LevelManager extends GameObject{
     private SpaceShip player;
     private static LevelManager theManager;
     final Random random = new Random();
+    private int asteroidsNumber = 0;
+    private int asteroidsMaxNumber = 5;
 
 
 
@@ -28,25 +30,32 @@ public class LevelManager extends GameObject{
     @Override
     public void update() {
         player.setSpeed(new Point2D(player.getSpeed().getX()*0.98,player.getSpeed().getY()*0.98));
+        int rand = random.nextInt(100);
+        if(rand == 0 && asteroidsNumber<asteroidsMaxNumber){
+            createAsteroid();
+            asteroidsNumber++;
+        }
     }
 
     public void createAsteroid(){
+        double x = 0;
+        double y = 0;
         int line = random.nextInt(4);
         if(line == 0){
-            double x = -100;
-            double y = random.nextInt(App.getHEIGHT());
+             x = -100;
+             y = random.nextInt(App.getHEIGHT());
         }
         if(line == 1){
-                double y = -100;
-                double x = random.nextInt(App.getWIDTH());
+             y = -100;
+             x = random.nextInt(App.getWIDTH());
         }
         if(line == 2){
-            double y = App.getHEIGHT()+100;
-            double x = random.nextInt(App.getWIDTH());
+             y = App.getHEIGHT()+100;
+             x = random.nextInt(App.getWIDTH());
         }
         if(line == 3){
-            double x = App.getWIDTH()+100;
-            double y = random.nextInt(App.getHEIGHT());
+             x = App.getWIDTH()+100;
+             y = random.nextInt(App.getHEIGHT());
         }
         int angle = random.nextInt(361);
         int speed = random.nextInt(2)+1;
@@ -55,14 +64,15 @@ public class LevelManager extends GameObject{
         asteroid.getSprite().setFitWidth(100);
         asteroid.getSprite().setFitHeight(100);
         asteroid.setRotation(angle);
+        asteroid.setX(x);
+        asteroid.setY(y);
         asteroid.setSpeed(new Point2D(speed*Math.cos(Math.toRadians(asteroid.getRotation())),speed*Math.sin(Math.toRadians(asteroid.getRotation()))));
     }
 
     public void onShootPressed(){
-        createAsteroid();
         if(player.getRechargeTimer()<=0) {
             Bullet bullet = new Bullet();
-            player.setRechargeTimer(10);
+            player.setRechargeTimer(50);
             bullet.getSprite().setFitWidth(10);
             bullet.getSprite().setFitHeight(10);
             bullet.moveCentreTo(player.getCentreX(), player.getCentreY());
