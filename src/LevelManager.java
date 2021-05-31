@@ -39,61 +39,39 @@ public class LevelManager extends GameObject{
     }
 
     public void createAsteroid(){
-//        double x = 0;
-//        double y = 0;
-//        int size = 0;
-//        int line = random.nextInt(4);
-//        if(line == 0){
-//             x = -100;
-//             y = random.nextInt(App.getHEIGHT());
-//        }
-//        if(line == 1){
-//             y = -100;
-//             x = random.nextInt(App.getWIDTH());
-//        }
-//        if(line == 2){
-//             y = App.getHEIGHT()+100;
-//             x = random.nextInt(App.getWIDTH());
-//        }
-//        if(line == 3){
-//             x = App.getWIDTH()+100;
-//             y = random.nextInt(App.getHEIGHT());
-//        }
-//        int angle = random.nextInt(361);
-//        int speed = random.nextInt(2)+1;
-//        Asteroid asteroid = new Asteroid();
-//        asteroid.setSprite("pepesteroid.png");
-//        asteroid.getSprite().setFitWidth(100);
-//        asteroid.getSprite().setFitHeight(100);
-//        asteroid.setRotation(angle);
-//        asteroid.setX(x);
-//        asteroid.setY(y);
-//        asteroid.setSpeed(new Point2D(speed*Math.cos(Math.toRadians(asteroid.getRotation())),speed*Math.sin(Math.toRadians(asteroid.getRotation()))));
-        Asteroid as1 = new Asteroid();
-        as1.setSprite("pepesteroid.png");
-        as1.getSprite().setFitWidth(100);
-        as1.getSprite().setFitHeight(100);
-        as1.setX(300);
-        as1.setY(300);
-        as1.setRotation(45);
-        as1.setSpeed(new Point2D(1*Math.cos(Math.toRadians(as1.getRotation())),1*Math.sin(Math.toRadians(as1.getRotation()))));
-
-        Asteroid as2 = new Asteroid();
-        as2.setSprite("pepesteroid.png");
-        as2.getSprite().setFitWidth(100);
-        as2.getSprite().setFitHeight(100);
-        as2.setX(700);
-        as2.setY(300);
-        as1.setRotation(135);
-        as2.setSpeed(new Point2D(1*Math.cos(Math.toRadians(as1.getRotation())),1*Math.sin(Math.toRadians(as1.getRotation()))));
+        double x = 0;
+        double y = 0;
+        int size = 0;
+        int line = random.nextInt(4);
+        if(line == 0){
+             x = -100;
+             y = random.nextInt(App.getHEIGHT());
+        }
+        if(line == 1){
+             y = -100;
+             x = random.nextInt(App.getWIDTH());
+        }
+        if(line == 2){
+             y = App.getHEIGHT()+100;
+             x = random.nextInt(App.getWIDTH());
+        }
+        if(line == 3){
+             x = App.getWIDTH()+100;
+             y = random.nextInt(App.getHEIGHT());
+        }
+        int angle = random.nextInt(361);
+        int speed = random.nextInt(2)+1;
+        Asteroid asteroid = new Asteroid();
+        asteroid.setX(x);
+        asteroid.setY(y);
+        asteroid.setSpeedM(speed,angle);
+     //   asteroid.setSpeed(new Point2D(speed*Math.cos(Math.toRadians(asteroid.getRotation())),speed*Math.sin(Math.toRadians(asteroid.getRotation()))));
     }
 
     public void onShootPressed(){
         if(player.getRechargeTimer()<=0) {
             Bullet bullet = new Bullet();
             player.setRechargeTimer(50);
-            bullet.getSprite().setFitWidth(10);
-            bullet.getSprite().setFitHeight(10);
             bullet.moveCentreTo(player.getCentreX(), player.getCentreY());
             bullet.setRotation(player.getRotation());
             bullet.setSpeed(new Point2D(15 * Math.cos(Math.toRadians(bullet.getRotation() - 90)), 15 * Math.sin(Math.toRadians(bullet.getRotation() - 90))));

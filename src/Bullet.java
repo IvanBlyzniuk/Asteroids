@@ -3,6 +3,8 @@ public class Bullet extends GameObject{
     public void init() {
         setSprite("bullet.png");
         setTag(Tag.bullet);
+        getSprite().setFitWidth(10);
+        getSprite().setFitHeight(10);
     }
 
     @Override
@@ -10,6 +12,9 @@ public class Bullet extends GameObject{
         if(this.getX()<0||this.getX()>App.getWIDTH()||this.getY()<0||this.getY()>App.getHEIGHT()){
             this.remove();
         }
+    }
+    public void onCollisions(GameObject other){
+
     }
 
 }
