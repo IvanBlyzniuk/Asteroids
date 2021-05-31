@@ -1,7 +1,7 @@
 public class SpaceShip extends GameObject{
     private boolean vulnerable = true;
     private double acceleration = 1.1;
-    private double speedLimit = 10;
+    private double speedLimit = 5;
     private double rechargeTimer = 0;
 
     public SpaceShip() {
