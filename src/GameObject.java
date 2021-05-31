@@ -17,8 +17,8 @@ public abstract class GameObject {
     public abstract void init();
 
     public final void outerUpdate(){
-        move(speed);
         update();
+        move(speed);
     }
 
     public abstract void update();

@@ -1,6 +1,10 @@
 import javafx.geometry.Point2D;
 
 public class Asteroid extends GameObject{
+
+    private Point2D newSpeed;
+    private boolean needToChangeSpeed;
+
     @Override
     public void init() {
         setTag(Tag.asteroid);
@@ -9,6 +13,11 @@ public class Asteroid extends GameObject{
 
     @Override
     public void update() {
+        if(needToChangeSpeed){
+            needToChangeSpeed = false;
+            setSpeed(newSpeed);
+        }
+
         if(getX()<-100){
             setX(App.getWIDTH()+100);
         }
@@ -30,8 +39,8 @@ public class Asteroid extends GameObject{
             double newVelX = (getSpeed().getX() * (getHitBoxSize() - other.getHitBoxSize()) + (2 * other.getHitBoxSize() * other.getSpeed().getX())) / (getHitBoxSize() + other.getHitBoxSize());
             double newVelY = (getSpeed().getY() * (getHitBoxSize() - other.getHitBoxSize()) + (2 * other.getHitBoxSize() * other.getSpeed().getY())) / (getHitBoxSize() + other.getHitBoxSize());
             Point2D newVel = new Point2D(newVelX,newVelY);
-            setSpeed(newVel);
-            move(newVel);
+            needToChangeSpeed = true;
+            newSpeed = newVel;
         }
     }
 }
