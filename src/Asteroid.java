@@ -8,4 +8,12 @@ public class Asteroid extends GameObject{
     public void update() {
 
     }
+
+    //Если не работеет, можно делать update и checkForCollisions в GameEngine 2 разными циклами
+    @Override
+    public void onCollision(GameObject other){
+        if(other.getTag() == Tag.asteroid){
+
+        }
+    }
 }
