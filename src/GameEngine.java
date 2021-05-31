@@ -19,6 +19,7 @@ public class GameEngine {
     private static ArrayList<GameObject> gameObjects = new ArrayList<>();
 
     private static Stack<GameObject> toDelete = new Stack<>();
+    private static Stack<GameObject> toAdd = new Stack<>();
 
     private static LevelManager manager;
 
@@ -38,8 +39,14 @@ public class GameEngine {
     public static void update(){
         for (GameObject obj: gameObjects){
             obj.outerUpdate();
+        }
+        for(GameObject obj: gameObjects){
             if(obj != manager)
                 checkCollisions(obj);
+        }
+        while (toAdd.size() > 0){
+            GameObject g = toAdd.pop();
+            gameObjects.add(g);
         }
         while(toDelete.size() > 0){
             GameObject g = toDelete.pop();
@@ -73,6 +80,7 @@ public class GameEngine {
      }
 
     public static void addGameObject(GameObject gameObject) {
-        gameObjects.add(gameObject);
+        toAdd.add(gameObject);
+//        gameObjects.add(gameObject);
     }
 }
