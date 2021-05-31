@@ -1,17 +1,20 @@
 import javafx.geometry.Point2D;
 
 public class Asteroid extends GameObject{
+    private Tag size;
     @Override
     public void init() {
         setTag(Tag.asteroid);
         int size = 0;
         size = LevelManager.random.nextInt(3);
         if(size == 0){
+            setSize(Tag.small);
             setSprite("smallPepesteroid.png");
             getSprite().setFitWidth(50);
             getSprite().setFitHeight(50);
             setHitBoxSize(25);
         }else{
+            setSize(Tag.big);
             setSprite("pepesteroid.png");
             getSprite().setFitWidth(100);
             getSprite().setFitHeight(100);
@@ -46,5 +49,9 @@ public class Asteroid extends GameObject{
             setSpeed(newVel);
             move(newVel);
         }
+    }
+
+    public void setSize(Tag size) {
+        this.size = size;
     }
 }

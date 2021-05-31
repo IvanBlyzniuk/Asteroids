@@ -13,5 +13,8 @@ public class Bullet extends GameObject{
             this.remove();
         }
     }
+    public void onCollisions(GameObject other){
+
+    }
 
 }
