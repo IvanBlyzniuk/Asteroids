@@ -60,8 +60,10 @@ public class App extends Application {
         start(primaryStage);
     }
     private Parent createPanel(){
+        Rectangle bg = new Rectangle(1000,1000);
         root = new Pane();
         root.setPrefSize(WIDTH,HEIGHT);
+        root.getChildren().add(bg);
         GameEngine.startGame();
         AnimationTimer timer = new AnimationTimer() {
             @Override

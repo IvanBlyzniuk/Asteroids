@@ -1,7 +1,7 @@
 public class SpaceShip extends GameObject{
     private boolean vulnerable = true;
     private double acceleration = 1.1;
-    private double speedLimit = 5;
+    private double speedLimit = 3.5;
     private double rechargeTimer = 0;
     private double infiniteRocketsTimer = 0;
     private double tripleShotTimer = 0;
@@ -10,10 +10,10 @@ public class SpaceShip extends GameObject{
 
     public void init(){
         setSprite("SpaceShip.png");
-        setX(App.getWIDTH()/2);
-        setY(App.getHEIGHT()/2);
         getSprite().setFitWidth(50);
         getSprite().setFitHeight(50);
+        setHitBoxSize(20);
+        moveCentreTo(App.getWIDTH()/2,App.getHEIGHT()/2);
         setTag(Tag.player);
     }
 

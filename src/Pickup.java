@@ -17,7 +17,7 @@ public class Pickup extends GameObject{
         }
         getSprite().setFitWidth(40);
         getSprite().setFitHeight(40);
-        setHitBoxSize(20);
+        setHitBoxSize(33);
 
     }
 

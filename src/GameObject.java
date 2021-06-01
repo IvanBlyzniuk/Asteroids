@@ -42,7 +42,7 @@ public abstract class GameObject {
         speed = p;
     }
 
-    public void setSpeedM(int module,int angle){
+    public void setSpeedM(double module,int angle){
         speed = new Point2D(module * Math.cos(Math.toRadians(angle)),module * Math.sin(Math.toRadians(angle)));
         this.setRotation(angle);
     }

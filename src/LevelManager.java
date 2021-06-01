@@ -11,7 +11,7 @@ public class LevelManager extends GameObject{
 
     private int asteroidsMaxNumber = 7;
     private int astronautsNumber = 0;
-    private int astronautsMaxNumber = 3;
+    private int astronautsMaxNumber = 1;
 
     private static int pickupSpawnCooldown;
 
@@ -82,8 +82,8 @@ public class LevelManager extends GameObject{
             x = App.getWIDTH()+100;
             y = random.nextInt(App.getHEIGHT());
         }
-        int angle = random.nextInt(361);
-        int speed = random.nextInt(2)+1;
+        int angle = random.nextInt(360);
+        double speed = random.nextDouble()+0.5;
         Astronaut astronaut = new Astronaut();
         astronaut.setX(x);
         astronaut.setY(y);
@@ -170,12 +170,12 @@ public class LevelManager extends GameObject{
     }
 
     public void onLeftPressed(){
-        player.setRotation(player.getRotation()-5);
+        player.setRotation(player.getRotation()-3);
 
     }
 
     public void onRightPressed(){
-        player.setRotation(player.getRotation()+5);
+        player.setRotation(player.getRotation()+3);
 
     }
     public void onShiftPressed(){
