@@ -13,6 +13,8 @@ public class LevelManager extends GameObject{
     private int astronautsNumber = 0;
     private int astronautsMaxNumber = 3;
 
+    private static int pickupSpawnCooldown;
+
     private static final int shotRechargeTime = 20;
 
     private boolean canSpawnPickup = true;
@@ -34,8 +36,21 @@ public class LevelManager extends GameObject{
         player = new SpaceShip();
     }
 
+    public static int getPickupSpawnCooldown() {
+        return pickupSpawnCooldown;
+    }
+
+    public static void setPickupSpawnCooldown(int pickupSpawnCooldown) {
+        LevelManager.pickupSpawnCooldown = pickupSpawnCooldown;
+        System.out.println("Set pickup cooldown");
+    }
+
     @Override
     public void update() {
+        if(pickupSpawnCooldown > 0){
+            pickupSpawnCooldown--;
+        }
+
         player.setSpeed(new Point2D(player.getSpeed().getX()*0.98,player.getSpeed().getY()*0.98));
         int rand = random.nextInt(100);
         if(rand == 0 && asteroidsNumber<asteroidsMaxNumber){
@@ -191,5 +206,6 @@ public class LevelManager extends GameObject{
 
     public void setCanSpawnPickup(boolean canSpawnPickup) {
         this.canSpawnPickup = canSpawnPickup;
+        System.out.println("Set canspawnPickups to "+canSpawnPickup);
     }
 }
