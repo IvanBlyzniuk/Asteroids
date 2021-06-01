@@ -45,6 +45,10 @@ public class Asteroid extends GameObject{
             newSpeed = newVel;
         }else if(other.getTag().contains(Tag.bullet)&&invulnerabilyTimer <= 0){
             GameEngine.remove(other);
+            int pickupChance = LevelManager.random.nextInt(2);
+            if(pickupChance == 0){
+                LevelManager.getManager().createPickup(getCentreX(),getCentreY());
+            }
             GameEngine.remove(this);
             if(getTag().contains(Tag.countsTowardsCap)){
                 LevelManager.getManager().setAsteroidsNumber(LevelManager.getManager().getAsteroidsNumber() - 1);

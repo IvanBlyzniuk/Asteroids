@@ -81,7 +81,7 @@ public class SpaceShip extends GameObject{
         return rocketsNumber;
     }
 
-    public void setRocketsnumber(double rocketsnumber) {
+    public void setRocketsNumber(double rocketsNumber) {
         this.rocketsNumber = rocketsNumber;
     }
 
