@@ -42,7 +42,6 @@ public class LevelManager extends GameObject{
 
     public static void setPickupSpawnCooldown(int pickupSpawnCooldown) {
         LevelManager.pickupSpawnCooldown = pickupSpawnCooldown;
-        System.out.println("Set pickup cooldown");
     }
 
     @Override
@@ -206,6 +205,5 @@ public class LevelManager extends GameObject{
 
     public void setCanSpawnPickup(boolean canSpawnPickup) {
         this.canSpawnPickup = canSpawnPickup;
-        System.out.println("Set canspawnPickups to "+canSpawnPickup);
     }
 }

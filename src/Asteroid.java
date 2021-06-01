@@ -47,7 +47,6 @@ public class Asteroid extends GameObject{
             GameEngine.remove(other);
             int pickupChance = LevelManager.random.nextInt(2);
             if(pickupChance == 0 && LevelManager.getPickupSpawnCooldown() <= 0 && LevelManager.getManager().isCanSpawnPickup()){
-                System.out.println("Spawned pickup");
                 LevelManager.getManager().createPickup(getCentreX(),getCentreY());
                 LevelManager.getManager().setCanSpawnPickup(false);
             }
