@@ -8,7 +8,9 @@ public class LevelManager extends GameObject{
     private static LevelManager theManager;
     public static final Random random = new Random();
     private int asteroidsNumber = 0;
-    private int asteroidsMaxNumber = 20;
+    private int asteroidsMaxNumber = 7;
+    private int astronautsNumber = 0;
+    private int astronautsMaxNumber = 3;
 
 
 
@@ -35,12 +37,43 @@ public class LevelManager extends GameObject{
             createAsteroid();
             asteroidsNumber++;
         }
+        rand = random.nextInt(500);
+        if(rand == 0 && astronautsNumber<astronautsMaxNumber){
+            createAstronaut();
+            astronautsNumber++;
+        }
+    }
+    public void createAstronaut(){
+        double x = 0;
+        double y = 0;
+        int line = random.nextInt(4);
+        if(line == 0){
+            x = -100;
+            y = random.nextInt(App.getHEIGHT());
+        }
+        if(line == 1){
+            y = -100;
+            x = random.nextInt(App.getWIDTH());
+        }
+        if(line == 2){
+            y = App.getHEIGHT()+100;
+            x = random.nextInt(App.getWIDTH());
+        }
+        if(line == 3){
+            x = App.getWIDTH()+100;
+            y = random.nextInt(App.getHEIGHT());
+        }
+        int angle = random.nextInt(361);
+        int speed = random.nextInt(2)+1;
+        Astronaut astronaut = new Astronaut();
+        astronaut.setX(x);
+        astronaut.setY(y);
+        astronaut.setSpeedM(speed,angle);
     }
 
     public void createAsteroid(){
         double x = 0;
         double y = 0;
-        int size = 0;
         int line = random.nextInt(4);
         if(line == 0){
              x = -100;
@@ -64,7 +97,11 @@ public class LevelManager extends GameObject{
         asteroid.setX(x);
         asteroid.setY(y);
         asteroid.setSpeedM(speed,angle);
-     //   asteroid.setSpeed(new Point2D(speed*Math.cos(Math.toRadians(asteroid.getRotation())),speed*Math.sin(Math.toRadians(asteroid.getRotation()))));
+    }
+    public void createPickup(double x, double y){
+        Pickup pickup = new Pickup();
+        pickup.setX(x);
+        pickup.setY(y);
     }
 
     public void onShootPressed(){
@@ -74,6 +111,16 @@ public class LevelManager extends GameObject{
             bullet.moveCentreTo(player.getCentreX(), player.getCentreY());
             bullet.setRotation(player.getRotation());
             bullet.setSpeed(new Point2D(15 * Math.cos(Math.toRadians(bullet.getRotation() - 90)), 15 * Math.sin(Math.toRadians(bullet.getRotation() - 90))));
+            if(player.getTripleShotTimer()>0){
+                Bullet bullet1 = new Bullet();
+                bullet1.moveCentreTo(player.getCentreX(), player.getCentreY());
+                bullet1.setRotation(player.getRotation()+15);
+                bullet1.setSpeed(new Point2D(15 * Math.cos(Math.toRadians(bullet1.getRotation() - 90)), 15 * Math.sin(Math.toRadians(bullet1.getRotation() - 90))));
+                Bullet bullet2 = new Bullet();
+                bullet2.moveCentreTo(player.getCentreX(), player.getCentreY());
+                bullet2.setRotation(player.getRotation()-15);
+                bullet2.setSpeed(new Point2D(15 * Math.cos(Math.toRadians(bullet2.getRotation() - 90)), 15 * Math.sin(Math.toRadians(bullet2.getRotation() - 90))));
+            }
         }
     }
 
@@ -96,6 +143,17 @@ public class LevelManager extends GameObject{
     public void onRightPressed(){
         player.setRotation(player.getRotation()+5);
 
+    }
+    public void onShiftPressed(){
+        if(player.getRechargeTimer()<=0){
+            if(player.getInfiniteRocketsTimer()>0||player.getRocketsNumber()>0) {
+                Rocket rocket = new Rocket();
+                player.setRechargeTimer(50);
+                rocket.moveCentreTo(player.getCentreX(), player.getCentreY());
+                rocket.setRotation(player.getRotation());
+                rocket.setSpeed(new Point2D(11 * Math.cos(Math.toRadians(rocket.getRotation() - 90)), 11 * Math.sin(Math.toRadians(rocket.getRotation() - 90))));
+            }
+        }
     }
 
 

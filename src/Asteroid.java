@@ -51,7 +51,7 @@ public class Asteroid extends GameObject{
     //Если много склеек, можно делать move
     @Override
     public void onCollision(GameObject other){
-        if(other.getTag().contains(Tag.asteroid)){
+        if(other.getTag().contains(Tag.asteroid)||other.getTag().contains(Tag.astronaut)){
             double newVelX = (getSpeed().getX() * (getHitBoxSize() - other.getHitBoxSize()) + (2 * other.getHitBoxSize() * other.getSpeed().getX())) / (getHitBoxSize() + other.getHitBoxSize());
             double newVelY = (getSpeed().getY() * (getHitBoxSize() - other.getHitBoxSize()) + (2 * other.getHitBoxSize() * other.getSpeed().getY())) / (getHitBoxSize() + other.getHitBoxSize());
             Point2D newVel = new Point2D(newVelX,newVelY);

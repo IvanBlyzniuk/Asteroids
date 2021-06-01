@@ -1,17 +1,32 @@
-import com.sun.javafx.geom.Point2D;
+public class Pickup extends GameObject{
 
- abstract class Pickup extends GameObject{
-    public Pickup(double x,double y){
-        init(x,y);
-    }
-    public void init(double x, double y){
+    public void init(){
         setTag(Tag.pickup);
-        setX(x);
-        setY(y);
-        setSprite("Pickup.png");
+        int type = LevelManager.random.nextInt(3);
+        if(type == 0){
+            setTag(Tag.rocketPickup);
+            setSprite("rocketPickup.png");
+        }
+        if(type == 1){
+            setTag(Tag.protectionPickup);
+            setSprite("protectionPickup.png");
+        }
+        if(type == 2){
+            setTag(Tag.tripleShotPickup);
+            setSprite("tripleShotPickup.png");
+        }
+        getSprite().setFitWidth(40);
+        getSprite().setFitHeight(40);
+        setHitBoxSize(20);
+
     }
-    abstract void upgrade();
-     public void onCollision(GameObject other) {
+
+    @Override
+    public void update() {
+
+    }
+
+    public void onCollision(GameObject other) {
 
      }
 

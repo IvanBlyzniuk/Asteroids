@@ -5,6 +5,7 @@ public class Bullet extends GameObject{
         setTag(Tag.bullet);
         getSprite().setFitWidth(10);
         getSprite().setFitHeight(10);
+        setHitBoxSize(5);
     }
 
     @Override

@@ -71,6 +71,7 @@ public class App extends Application {
                 if(inputs.contains("D")) LevelManager.getManager().onRightPressed();
                 if(inputs.contains("S")) LevelManager.getManager().onDownPressed();
                 if(inputs.contains("SPACE")) LevelManager.getManager().onShootPressed();
+                if(inputs.contains("SHIFT")) LevelManager.getManager().onShiftPressed();
                 GameEngine.update();
             }
         };

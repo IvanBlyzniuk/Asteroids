@@ -3,6 +3,10 @@ public class SpaceShip extends GameObject{
     private double acceleration = 1.1;
     private double speedLimit = 5;
     private double rechargeTimer = 0;
+    private double infiniteRocketsTimer = 0;
+    private double tripleShotTimer = 0;
+    private double protectionTimer = 0;
+    private double rocketsNumber = 0;
 
     public SpaceShip() {
     }
@@ -10,7 +14,6 @@ public class SpaceShip extends GameObject{
 
 
     public void init(){
-//        setSprite("SpaceShacal.png");
         setSprite("SpaceShacal.png");
         setX(App.getWIDTH()/2);
         setY(App.getHEIGHT()/2);
@@ -46,8 +49,40 @@ public class SpaceShip extends GameObject{
         } else if(other.getTag().contains(Tag.astronaut)){
            // SceneManager.setScore(SceneManager.getScore()+5);
         }else if(other.getTag().contains(Tag.pickup)){
-            ((Pickup)(other)).upgrade();
+
         }
+    }
+
+    public double getInfiniteRocketsTimer() {
+        return infiniteRocketsTimer;
+    }
+
+    public void setInfiniteRocketsTimer(double infiniteRocketsTimer) {
+        this.infiniteRocketsTimer = infiniteRocketsTimer;
+    }
+
+    public double getTripleShotTimer() {
+        return tripleShotTimer;
+    }
+
+    public double getProtectionTimer() {
+        return protectionTimer;
+    }
+
+    public void setProtectionTimer(double protectionTimer) {
+        this.protectionTimer = protectionTimer;
+    }
+
+    public void setTripleShotTimer(double tripleShotTimer) {
+        this.tripleShotTimer = tripleShotTimer;
+    }
+
+    public double getRocketsNumber() {
+        return rocketsNumber;
+    }
+
+    public void setRocketsnumber(double rocketsnumber) {
+        this.rocketsNumber = rocketsNumber;
     }
 
     public double getSpeedLimit() {
