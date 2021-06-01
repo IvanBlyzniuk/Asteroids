@@ -25,6 +25,7 @@ public class Pickup extends GameObject{
     public void update() {
         if(this.getX()<0||this.getX()>App.getWIDTH()||this.getY()<0||this.getY()>App.getHEIGHT()){
             this.remove();
+            LevelManager.getManager().setCanSpawnPickup(true);
         }
     }
 

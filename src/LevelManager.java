@@ -13,6 +13,8 @@ public class LevelManager extends GameObject{
     private int astronautsNumber = 0;
     private int astronautsMaxNumber = 3;
 
+    private static int pickupSpawnCooldown;
+
     private static final int shotRechargeTime = 20;
 
     private boolean canSpawnPickup = true;
@@ -34,8 +36,20 @@ public class LevelManager extends GameObject{
         player = new SpaceShip();
     }
 
+    public static int getPickupSpawnCooldown() {
+        return pickupSpawnCooldown;
+    }
+
+    public static void setPickupSpawnCooldown(int pickupSpawnCooldown) {
+        LevelManager.pickupSpawnCooldown = pickupSpawnCooldown;
+    }
+
     @Override
     public void update() {
+        if(pickupSpawnCooldown > 0){
+            pickupSpawnCooldown--;
+        }
+
         player.setSpeed(new Point2D(player.getSpeed().getX()*0.98,player.getSpeed().getY()*0.98));
         int rand = random.nextInt(100);
         if(rand == 0 && asteroidsNumber<asteroidsMaxNumber){
@@ -103,13 +117,13 @@ public class LevelManager extends GameObject{
         int size = LevelManager.random.nextInt(3);
         if(size == 0){
             asteroid.setTag(Tag.small);
-            asteroid.setSprite("smallPepesteroid.png");
+            asteroid.setSprite("smallAsteroid.png");
             asteroid.getSprite().setFitWidth(50);
             asteroid.getSprite().setFitHeight(50);
             asteroid.setHitBoxSize(25);
         }else{
             asteroid.setTag(Tag.big);
-            asteroid.setSprite("pepesteroid.png");
+            asteroid.setSprite("Asteroid.png");
             asteroid.getSprite().setFitWidth(100);
             asteroid.getSprite().setFitHeight(100);
             asteroid.setHitBoxSize(50);

@@ -9,7 +9,7 @@ public class SpaceShip extends GameObject{
     private double rocketsNumber = 0;
 
     public void init(){
-        setSprite("SpaceShacal.png");
+        setSprite("SpaceShip.png");
         setX(App.getWIDTH()/2);
         setY(App.getHEIGHT()/2);
         getSprite().setFitWidth(50);
@@ -54,13 +54,19 @@ public class SpaceShip extends GameObject{
         } else if(other.getTag().contains(Tag.astronaut)){
            // SceneManager.setScore(SceneManager.getScore()+5);
         }else if(other.getTag().contains(Tag.protectionPickup)){
+            LevelManager.getManager().setCanSpawnPickup(true);
             GameEngine.remove(other);
+            LevelManager.setPickupSpawnCooldown(600);
             protectionTimer = 600;
         }else if(other.getTag().contains(Tag.rocketPickup)){
+            LevelManager.getManager().setCanSpawnPickup(true);
             GameEngine.remove(other);
+            LevelManager.setPickupSpawnCooldown(600);
             infiniteRocketsTimer = 600;
         }else if(other.getTag().contains(Tag.tripleShotPickup)){
+            LevelManager.getManager().setCanSpawnPickup(true);
             GameEngine.remove(other);
+            LevelManager.setPickupSpawnCooldown(600);
             tripleShotTimer = 600;
         }
     }

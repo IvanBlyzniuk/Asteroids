@@ -46,8 +46,9 @@ public class Asteroid extends GameObject{
         }else if(other.getTag().contains(Tag.bullet)&&invulnerabilyTimer <= 0){
             GameEngine.remove(other);
             int pickupChance = LevelManager.random.nextInt(2);
-            if(pickupChance == 0){
+            if(pickupChance == 0 && LevelManager.getPickupSpawnCooldown() <= 0 && LevelManager.getManager().isCanSpawnPickup()){
                 LevelManager.getManager().createPickup(getCentreX(),getCentreY());
+                LevelManager.getManager().setCanSpawnPickup(false);
             }
             GameEngine.remove(this);
             if(getTag().contains(Tag.countsTowardsCap)){
@@ -61,7 +62,7 @@ public class Asteroid extends GameObject{
                     Point2D additionalSpeed = new Point2D(Math.cos(Math.toRadians(angle)),Math.sin(Math.toRadians(angle)));
                     Asteroid part1 = new Asteroid();
                     part1.setTag(Tag.small);
-                    part1.setSprite("smallPepesteroid.png");
+                    part1.setSprite("smallAsteroid.png");
                     part1.moveCentreTo(getCentreX() + additionalSpeed.getY()*getHitBoxSize(), getCentreY() + additionalSpeed.getY()*getHitBoxSize());
                     part1.setSpeed(new Point2D(getSpeed().getX()+additionalSpeed.getX(), getSpeed().getY()+additionalSpeed.getY()));
                     part1.getSprite().setFitWidth(50);
@@ -71,7 +72,7 @@ public class Asteroid extends GameObject{
 
                     Asteroid part2 = new Asteroid();
                     part2.setTag(Tag.small);
-                    part2.setSprite("smallPepesteroid.png");
+                    part2.setSprite("smallAsteroid.png");
                     part2.moveCentreTo(getCentreX() - additionalSpeed.getY()*getHitBoxSize(), getCentreY() - additionalSpeed.getY()*getHitBoxSize());
                     part2.setSpeed(new Point2D(getSpeed().getX()-additionalSpeed.getX(), getSpeed().getY()-additionalSpeed.getY()));
                     part2.getSprite().setFitWidth(50);
@@ -84,7 +85,7 @@ public class Asteroid extends GameObject{
                         Point2D additionalSpeed = new Point2D(Math.cos(Math.toRadians(angle+i*120)),Math.sin(Math.toRadians(angle+i*120)));
                         Asteroid part1 = new Asteroid();
                         part1.setTag(Tag.small);
-                        part1.setSprite("smallPepesteroid.png");
+                        part1.setSprite("smallAsteroid.png");
                         part1.moveCentreTo(getCentreX() + additionalSpeed.getY()*getHitBoxSize(), getCentreY() + additionalSpeed.getY()*getHitBoxSize());
                         part1.setSpeed(new Point2D(getSpeed().getX()+additionalSpeed.getX(), getSpeed().getY()+additionalSpeed.getY()));
                         part1.getSprite().setFitWidth(50);
