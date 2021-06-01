@@ -15,6 +15,8 @@ public class LevelManager extends GameObject{
 
     private static final int shotRechargeTime = 20;
 
+    private boolean canSpawnPickup = true;
+
 
 
     private LevelManager(){}
@@ -181,5 +183,13 @@ public class LevelManager extends GameObject{
 
     public int getAsteroidsNumber() {
         return asteroidsNumber;
+    }
+
+    public boolean isCanSpawnPickup() {
+        return canSpawnPickup;
+    }
+
+    public void setCanSpawnPickup(boolean canSpawnPickup) {
+        this.canSpawnPickup = canSpawnPickup;
     }
 }
