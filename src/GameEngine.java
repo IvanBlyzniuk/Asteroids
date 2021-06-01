@@ -61,8 +61,6 @@ public class GameEngine {
                         obj1.move(new Point2D(0,-1));
                         obj2.move(new Point2D(0,1));
                     }
-
-                    System.out.println("Telefrag");
                 }
                 foundCollision = true;
                 obj1.onCollision(obj2);
