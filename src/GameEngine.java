@@ -1,14 +1,7 @@
-import com.sun.javafx.tk.quantum.MasterTimer;
-import javafx.animation.AnimationTimer;
-import javafx.animation.KeyFrame;
-import javafx.animation.Timeline;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.geometry.Point2D;
-import javafx.util.Duration;
 
 import java.util.ArrayList;
-import java.util.Queue;
+
 import java.util.Stack;
 
 public class GameEngine {

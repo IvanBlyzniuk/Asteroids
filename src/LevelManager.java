@@ -8,9 +8,12 @@ public class LevelManager extends GameObject{
     private static LevelManager theManager;
     public static final Random random = new Random();
     private int asteroidsNumber = 0;
+
     private int asteroidsMaxNumber = 7;
     private int astronautsNumber = 0;
     private int astronautsMaxNumber = 3;
+
+    private static final int shotRechargeTime = 20;
 
 
 
@@ -94,6 +97,21 @@ public class LevelManager extends GameObject{
         int angle = random.nextInt(361);
         int speed = random.nextInt(2)+1;
         Asteroid asteroid = new Asteroid();
+        asteroid.setTag(Tag.countsTowardsCap);
+        int size = LevelManager.random.nextInt(3);
+        if(size == 0){
+            asteroid.setTag(Tag.small);
+            asteroid.setSprite("smallPepesteroid.png");
+            asteroid.getSprite().setFitWidth(50);
+            asteroid.getSprite().setFitHeight(50);
+            asteroid.setHitBoxSize(25);
+        }else{
+            asteroid.setTag(Tag.big);
+            asteroid.setSprite("pepesteroid.png");
+            asteroid.getSprite().setFitWidth(100);
+            asteroid.getSprite().setFitHeight(100);
+            asteroid.setHitBoxSize(50);
+        }
         asteroid.setX(x);
         asteroid.setY(y);
         asteroid.setSpeedM(speed,angle);
@@ -107,7 +125,7 @@ public class LevelManager extends GameObject{
     public void onShootPressed(){
         if(player.getRechargeTimer()<=0) {
             Bullet bullet = new Bullet();
-            player.setRechargeTimer(50);
+            player.setRechargeTimer(shotRechargeTime);
             bullet.moveCentreTo(player.getCentreX(), player.getCentreY());
             bullet.setRotation(player.getRotation());
             bullet.setSpeed(new Point2D(15 * Math.cos(Math.toRadians(bullet.getRotation() - 90)), 15 * Math.sin(Math.toRadians(bullet.getRotation() - 90))));
@@ -157,4 +175,11 @@ public class LevelManager extends GameObject{
     }
 
 
+    public void setAsteroidsNumber(int asteroidsNumber) {
+        this.asteroidsNumber = asteroidsNumber;
+    }
+
+    public int getAsteroidsNumber() {
+        return asteroidsNumber;
+    }
 }
