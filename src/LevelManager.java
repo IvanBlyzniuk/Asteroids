@@ -19,6 +19,8 @@ public class LevelManager extends GameObject{
 
     private boolean canSpawnPickup = true;
 
+    private int score = 0;
+
 
 
     private LevelManager(){}
@@ -205,5 +207,21 @@ public class LevelManager extends GameObject{
 
     public void setCanSpawnPickup(boolean canSpawnPickup) {
         this.canSpawnPickup = canSpawnPickup;
+    }
+
+    public int getScore() {
+        return score;
+    }
+
+    public void setScore(int score) {
+        this.score = score;
+    }
+
+    public int getAstronautsNumber() {
+        return astronautsNumber;
+    }
+
+    public void setAstronautsNumber(int astronautsNumber) {
+        this.astronautsNumber = astronautsNumber;
     }
 }

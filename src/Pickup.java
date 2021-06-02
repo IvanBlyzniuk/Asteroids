@@ -2,22 +2,33 @@ public class Pickup extends GameObject{
 
     public void init(){
         setTag(Tag.pickup);
-        int type = LevelManager.random.nextInt(3);
+        int type = LevelManager.random.nextInt(10);
         if(type == 0){
             setTag(Tag.rocketPickup);
             setSprite("rocketPickup.png");
-        }
-        if(type == 1){
+            getSprite().setFitWidth(40);
+            getSprite().setFitHeight(40);
+            setHitBoxSize(33);
+        }else if(type == 1){
             setTag(Tag.protectionPickup);
             setSprite("protectionPickup.png");
-        }
-        if(type == 2){
+            getSprite().setFitWidth(40);
+            getSprite().setFitHeight(40);
+            setHitBoxSize(33);
+        }else if(type == 2){
             setTag(Tag.tripleShotPickup);
             setSprite("tripleShotPickup.png");
+            getSprite().setFitWidth(40);
+            getSprite().setFitHeight(40);
+            setHitBoxSize(33);
+        }else{
+            setTag(Tag.addOneRocketPickup);
+            setSprite("rocket.png");
+            getSprite().setFitWidth(18);
+            getSprite().setFitHeight(18);
+            setHitBoxSize(9);
         }
-        getSprite().setFitWidth(40);
-        getSprite().setFitHeight(40);
-        setHitBoxSize(33);
+
 
     }
 
