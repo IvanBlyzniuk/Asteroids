@@ -14,4 +14,13 @@ public class Rocket extends GameObject{
             this.remove();
         }
     }
+
+    @Override
+    public void onCollision(GameObject other) {
+        if(other.getTag().contains(Tag.asteroid)||other.getTag().contains(Tag.astronaut)){
+            remove();
+            Explosion explosion = new Explosion();
+            explosion.moveCentreTo(getCentreX(),getCentreY());
+        }
+    }
 }
