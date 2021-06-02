@@ -23,6 +23,8 @@ public class App extends Application {
     public App(){
         initMainMenu();
     }
+
+    private static AnimationTimer timer;
     @Override
     public void start(Stage primaryStage) throws Exception {
         Scene scene = new Scene(createPanel());
@@ -56,6 +58,11 @@ public class App extends Application {
         });
 
     }
+
+    public static void stopGame(){
+        timer.stop();
+    }
+
     public void launch() throws Exception {
         start(primaryStage);
     }
@@ -65,7 +72,7 @@ public class App extends Application {
         root.setPrefSize(WIDTH,HEIGHT);
         root.getChildren().add(bg);
         GameEngine.startGame();
-        AnimationTimer timer = new AnimationTimer() {
+        timer = new AnimationTimer() {
             @Override
             public void handle(long now) {
                 if(inputs.contains("W")) LevelManager.getManager().onUpPressed();

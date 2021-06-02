@@ -17,8 +17,6 @@ public class GameEngine {
 
     private static LevelManager manager;
 
-    private static boolean end;
-
     private static int iter = 0;
 
     private GameEngine(){
@@ -76,7 +74,7 @@ public class GameEngine {
     }
 
     public static void stopGame(){
-        end = true;
+
     }
 
     public static void remove(GameObject obj){
