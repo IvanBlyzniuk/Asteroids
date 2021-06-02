@@ -1,5 +1,7 @@
 import javafx.geometry.Point2D;
-
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
+import java.io.File;
 import java.util.Random;
 
 public class LevelManager extends GameObject{
@@ -140,6 +142,7 @@ public class LevelManager extends GameObject{
 
     public void onShootPressed(){
         if(player.getRechargeTimer()<=0) {
+            playSound();
             Bullet bullet = new Bullet();
             player.setRechargeTimer(shotRechargeTime);
             bullet.moveCentreTo(player.getCentreX(), player.getCentreY());
@@ -205,5 +208,13 @@ public class LevelManager extends GameObject{
 
     public void setCanSpawnPickup(boolean canSpawnPickup) {
         this.canSpawnPickup = canSpawnPickup;
+    }
+
+    public static void playSound(){
+        String musicFile = "Sound1.mp3";     // For example
+        Media sound = new Media(new File(musicFile).toURI().toString());
+        MediaPlayer mediaPlayer = new MediaPlayer(sound);
+        mediaPlayer.play();
+        mediaPlayer.setVolume(0.1);
     }
 }
