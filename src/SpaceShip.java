@@ -19,6 +19,8 @@ public class SpaceShip extends GameObject{
 
     @Override
     public void update() {
+        vulnerable = protectionTimer <= 0;
+
         if(rechargeTimer>0){
             rechargeTimer--;
         }
@@ -48,7 +50,7 @@ public class SpaceShip extends GameObject{
 
     public void onCollision(GameObject other){
         if(other.getTag().contains(Tag.asteroid)&&vulnerable){
-            GameEngine.stopGame();
+            App.stopGame();
         }else if(other.getTag().contains(Tag.asteroid)){
 
         } else if(other.getTag().contains(Tag.astronaut)){
