@@ -21,6 +21,8 @@ public class LevelManager extends GameObject{
 
     private boolean canSpawnPickup = true;
 
+    private int score = 0;
+
 
 
     private LevelManager(){}
@@ -209,12 +211,32 @@ public class LevelManager extends GameObject{
     public void setCanSpawnPickup(boolean canSpawnPickup) {
         this.canSpawnPickup = canSpawnPickup;
     }
-
     public static void playSound(){
         String musicFile = "Sound1.mp3";     // For example
         Media sound = new Media(new File(musicFile).toURI().toString());
         MediaPlayer mediaPlayer = new MediaPlayer(sound);
         mediaPlayer.play();
         mediaPlayer.setVolume(0.1);
+    }
+
+    public int getScore() {
+        return score;
+    }
+
+    public void incScore(int toAdd) {
+        score+=toAdd;
+    }
+    public void decScore(int toDec) {
+        score-=toDec;
+        if(score<0)
+            score=0;
+    }
+
+    public int getAstronautsNumber() {
+        return astronautsNumber;
+    }
+
+    public void setAstronautsNumber(int astronautsNumber) {
+        this.astronautsNumber = astronautsNumber;
     }
 }

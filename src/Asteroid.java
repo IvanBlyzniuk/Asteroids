@@ -51,6 +51,11 @@ public class Asteroid extends GameObject{
                 LevelManager.getManager().createPickup(getCentreX(),getCentreY());
                 LevelManager.getManager().setCanSpawnPickup(false);
             }
+            if(getTag().contains(Tag.small)){
+                LevelManager.getManager().incScore(1);
+            }else if(getTag().contains(Tag.big)){
+                LevelManager.getManager().incScore(3);
+            }
             GameEngine.remove(this);
             if(getTag().contains(Tag.countsTowardsCap)){
                 LevelManager.getManager().setAsteroidsNumber(LevelManager.getManager().getAsteroidsNumber() - 1);

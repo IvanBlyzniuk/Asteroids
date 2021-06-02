@@ -70,6 +70,11 @@ public class SpaceShip extends GameObject{
             GameEngine.remove(other);
             LevelManager.setPickupSpawnCooldown(600);
             tripleShotTimer = 600;
+        }else if(other.getTag().contains(Tag.addOneRocketPickup)){
+            LevelManager.getManager().setCanSpawnPickup(true);
+            GameEngine.remove(other);
+            LevelManager.setPickupSpawnCooldown(600);
+            rocketsNumber++;
         }
     }
 
