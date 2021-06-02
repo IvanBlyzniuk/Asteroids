@@ -43,8 +43,9 @@ public class Asteroid extends GameObject{
             Point2D newVel = new Point2D(newVelX,newVelY);
             needToChangeSpeed = true;
             newSpeed = newVel;
-        }else if(other.getTag().contains(Tag.bullet)&&invulnerabilyTimer <= 0){
-            GameEngine.remove(other);
+        }else if((other.getTag().contains(Tag.bullet)||other.getTag().contains(Tag.explosion))&&invulnerabilyTimer <= 0){
+            if(other.getTag().contains(Tag.bullet))
+                GameEngine.remove(other);
             int pickupChance = LevelManager.random.nextInt(2);
             if(pickupChance == 0 && LevelManager.getPickupSpawnCooldown() <= 0 && LevelManager.getManager().isCanSpawnPickup()){
                 LevelManager.getManager().createPickup(getCentreX(),getCentreY());

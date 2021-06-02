@@ -46,11 +46,15 @@ public class Astronaut extends GameObject{
         }else if(other.getTag().contains(Tag.bullet)){
             remove();
             other.remove();
-            LevelManager.getManager().setScore(LevelManager.getManager().getScore()-10);
+            LevelManager.getManager().decScore(10);
             LevelManager.getManager().setAstronautsNumber(LevelManager.getManager().getAstronautsNumber()-1);
         }else if(other.getTag().contains(Tag.player)){
             remove();
-            LevelManager.getManager().setScore(LevelManager.getManager().getScore()+5);
+            LevelManager.getManager().incScore(5);
+            LevelManager.getManager().setAstronautsNumber(LevelManager.getManager().getAstronautsNumber()-1);
+        }else if(other.getTag().contains(Tag.explosion)){
+            remove();
+            LevelManager.getManager().decScore(10);
             LevelManager.getManager().setAstronautsNumber(LevelManager.getManager().getAstronautsNumber()-1);
         }
     }

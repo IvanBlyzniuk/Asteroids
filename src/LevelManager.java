@@ -213,8 +213,13 @@ public class LevelManager extends GameObject{
         return score;
     }
 
-    public void setScore(int score) {
-        this.score = score;
+    public void incScore(int toAdd) {
+        score+=toAdd;
+    }
+    public void decScore(int toDec) {
+        score-=toDec;
+        if(score<0)
+            score=0;
     }
 
     public int getAstronautsNumber() {
