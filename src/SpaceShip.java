@@ -56,21 +56,25 @@ public class SpaceShip extends GameObject{
         } else if(other.getTag().contains(Tag.astronaut)){
            // SceneManager.setScore(SceneManager.getScore()+5);
         }else if(other.getTag().contains(Tag.protectionPickup)){
+            LevelManager.playPickupSound();
             LevelManager.getManager().setCanSpawnPickup(true);
             GameEngine.remove(other);
             LevelManager.setPickupSpawnCooldown(600);
             protectionTimer = 600;
         }else if(other.getTag().contains(Tag.rocketPickup)){
+            LevelManager.playPickupSound();
             LevelManager.getManager().setCanSpawnPickup(true);
             GameEngine.remove(other);
             LevelManager.setPickupSpawnCooldown(600);
             infiniteRocketsTimer = 600;
         }else if(other.getTag().contains(Tag.tripleShotPickup)){
+            LevelManager.playPickupSound();
             LevelManager.getManager().setCanSpawnPickup(true);
             GameEngine.remove(other);
             LevelManager.setPickupSpawnCooldown(600);
             tripleShotTimer = 600;
         }else if(other.getTag().contains(Tag.addOneRocketPickup)){
+            LevelManager.playPickupSound();
             LevelManager.getManager().setCanSpawnPickup(true);
             GameEngine.remove(other);
             LevelManager.setPickupSpawnCooldown(600);

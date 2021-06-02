@@ -19,8 +19,13 @@ public class App extends Application {
     private static final int WIDTH = 1000;
     private static final int HEIGHT = 700;
     Stage primaryStage = new Stage();
-    ArrayList<String> inputs = new ArrayList<>();
+    private ArrayList<String> inputs = new ArrayList<>();
+    private static double volume;
+
     public App(){
+        //TODO: delete later ----------------------------------------------------
+        setVolume(0.1);
+
         initMainMenu();
     }
 
@@ -53,6 +58,8 @@ public class App extends Application {
             @Override
             public void handle(KeyEvent e) {
                 String code = e.getCode().toString();
+                if(code.equals("W"))
+                    LevelManager.getManager().onUpReleased();
                 inputs.remove( code );
             }
         });
@@ -129,5 +136,13 @@ public class App extends Application {
         menu.getChildren().add(bg);
         menu.getChildren().add(start);
         return menu;
+    }
+
+    public static double getVolume() {
+        return volume;
+    }
+
+    public static void setVolume(double volume) {
+        App.volume = volume;
     }
 }

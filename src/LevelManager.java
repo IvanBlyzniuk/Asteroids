@@ -1,6 +1,8 @@
 import javafx.geometry.Point2D;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
+import javafx.util.Duration;
+
 import java.io.File;
 import java.util.Random;
 
@@ -23,9 +25,10 @@ public class LevelManager extends GameObject{
 
     private int score = 0;
 
+    MediaPlayer shipSoundPlayer = new MediaPlayer(new Media(new File("Sounds\\SpaceShip_move.mp3").toURI().toString()));
 
-
-    private LevelManager(){}
+    private LevelManager(){
+    }
 
     public static LevelManager getManager(){
         return theManager;
@@ -144,7 +147,7 @@ public class LevelManager extends GameObject{
 
     public void onShootPressed(){
         if(player.getRechargeTimer()<=0) {
-            playSound();
+            playShootingSound();
             Bullet bullet = new Bullet();
             player.setRechargeTimer(shotRechargeTime);
             bullet.moveCentreTo(player.getCentreX(), player.getCentreY());
@@ -164,9 +167,19 @@ public class LevelManager extends GameObject{
     }
 
     public void onUpPressed(){
+        shipSoundPlayer.setVolume(App.getVolume()/2);
+        System.out.println(shipSoundPlayer.getTotalDuration());
+        if(shipSoundPlayer.getCurrentTime().toMillis()>3400){
+            shipSoundPlayer = new MediaPlayer(new Media(new File("Sounds\\SpaceShip_move.mp3").toURI().toString()));
+        }
+        shipSoundPlayer.play();
         if(Math.pow(Math.pow(player.getSpeed().getX(),2)+Math.pow(player.getSpeed().getY(),2),0.5)<player.getSpeedLimit()) {
             player.setSpeed(new Point2D(player.getSpeed().getX() - Math.cos(Math.toRadians(player.getRotation() + 90)) * player.getAcceleration(), player.getSpeed().getY() - Math.sin(Math.toRadians(player.getRotation() + 90)) * player.getAcceleration()));
         }
+    }
+
+    public void onUpReleased(){
+        shipSoundPlayer.stop();
     }
 
     public void onDownPressed(){
@@ -211,12 +224,21 @@ public class LevelManager extends GameObject{
     public void setCanSpawnPickup(boolean canSpawnPickup) {
         this.canSpawnPickup = canSpawnPickup;
     }
-    public static void playSound(){
-        String musicFile = "Sound1.mp3";     // For example
+
+    public static void playShootingSound(){
+        String musicFile = "Sounds\\Shoot.mp3";
         Media sound = new Media(new File(musicFile).toURI().toString());
         MediaPlayer mediaPlayer = new MediaPlayer(sound);
+        mediaPlayer.setVolume(App.getVolume());
         mediaPlayer.play();
-        mediaPlayer.setVolume(0.1);
+    }
+
+    public static void playPickupSound(){
+        String musicFile = "Sounds\\Pickup.mp3";
+        Media sound = new Media(new File(musicFile).toURI().toString());
+        MediaPlayer mediaPlayer = new MediaPlayer(sound);
+        mediaPlayer.setVolume(App.getVolume());
+        mediaPlayer.play();
     }
 
     public int getScore() {
