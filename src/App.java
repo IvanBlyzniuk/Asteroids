@@ -140,7 +140,7 @@ public class App extends Application {
         exit.setBackground(background);
         exit.setPrefWidth(300);
         exit.setTranslateX(350);
-        exit.setTranslateY(450);
+        exit.setTranslateY(540);
         exit.setFont(font);
         exit.setOnAction(event -> {
             try {
@@ -149,6 +149,12 @@ public class App extends Application {
                 e.printStackTrace();
             }
         });
+        Button options = new Button("Options");
+        options.setBackground(background);
+        options.setPrefWidth(300);
+        options.setTranslateX(350);
+        options.setTranslateY(420);
+        options.setFont(font);
         ImageView logo = new ImageView(new Image("logo.jfif"));
         logo.setFitWidth(500);
         logo.setFitHeight(200);
@@ -157,6 +163,7 @@ public class App extends Application {
         menu.getChildren().add(bg);
         menu.getChildren().add(start);
         menu.getChildren().add(exit);
+        menu.getChildren().add(options);
         menu.getChildren().add(logo);
         return menu;
     }
