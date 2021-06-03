@@ -9,7 +9,7 @@ public class Rocket extends GameObject{
 
     @Override
     public void init() {
-        setSprite("rocket.png");
+        setSprite("Sprites\\rocket.png");
         setTag(Tag.rocket);
         getSprite().setFitWidth(15);
         getSprite().setFitHeight(15);

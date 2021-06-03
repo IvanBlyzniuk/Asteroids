@@ -157,7 +157,7 @@ public class App extends Application  {
         Rectangle bg = new Rectangle(1000,1000);
         Font font = Font.font(52);
         Button start = new Button("Start");
-        BackgroundImage backgroundImage = new BackgroundImage( new Image( "buttonBackground.jfif"), BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
+        BackgroundImage backgroundImage = new BackgroundImage( new Image( "Sprites\\buttonBackground.jfif"), BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
         Background background = new Background(backgroundImage);
         start.setBackground(background);
         start.setPrefWidth(300);
@@ -190,7 +190,7 @@ public class App extends Application  {
         options.setTranslateX(350);
         options.setTranslateY(420);
         options.setFont(font);
-        ImageView logo = new ImageView(new Image("logo.jfif"));
+        ImageView logo = new ImageView(new Image("Sprites\\logo.jfif"));
         logo.setFitWidth(500);
         logo.setFitHeight(200);
         logo.setX(250);

@@ -11,7 +11,7 @@ public class Explosion extends GameObject{
     @Override
     public void init() {
         timeToLive = maxTimeToLive;
-        setSprite("explosion.png");
+        setSprite("Sprites\\explosion.png");
         getSprite().setFitWidth(200);
         getSprite().setFitHeight(200);
         setTag(Tag.explosion);

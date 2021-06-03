@@ -9,7 +9,7 @@ public class SpaceShip extends GameObject{
     private double rocketsNumber = 100;
 
     public void init(){
-        setSprite("SpaceShip.png");
+        setSprite("Sprites\\SpaceShip.png");
         getSprite().setFitWidth(50);
         getSprite().setFitHeight(50);
         setHitBoxSize(20);

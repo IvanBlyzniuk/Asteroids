@@ -1,7 +1,7 @@
 public class Bullet extends GameObject{
     @Override
     public void init() {
-        setSprite("bullet.png");
+        setSprite("Sprites\\bullet.png");
         setTag(Tag.bullet);
         getSprite().setFitWidth(10);
         getSprite().setFitHeight(10);

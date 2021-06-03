@@ -5,25 +5,25 @@ public class Pickup extends GameObject{
         int type = LevelManager.random.nextInt(10);
         if(type == 0){
             setTag(Tag.rocketPickup);
-            setSprite("rocketPickup.png");
+            setSprite("Sprites\\rocketPickup.png");
             getSprite().setFitWidth(40);
             getSprite().setFitHeight(40);
             setHitBoxSize(33);
         }else if(type == 1){
             setTag(Tag.protectionPickup);
-            setSprite("protectionPickup.png");
+            setSprite("Sprites\\protectionPickup.png");
             getSprite().setFitWidth(40);
             getSprite().setFitHeight(40);
             setHitBoxSize(33);
         }else if(type == 2){
             setTag(Tag.tripleShotPickup);
-            setSprite("tripleShotPickup.png");
+            setSprite("Sprites\\tripleShotPickup.png");
             getSprite().setFitWidth(40);
             getSprite().setFitHeight(40);
             setHitBoxSize(33);
         }else{
             setTag(Tag.addOneRocketPickup);
-            setSprite("rocket.png");
+            setSprite("Sprites\\rocket.png");
             getSprite().setFitWidth(18);
             getSprite().setFitHeight(18);
             setHitBoxSize(9);

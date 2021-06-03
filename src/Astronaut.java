@@ -8,7 +8,7 @@ public class Astronaut extends GameObject{
     public void init() {
         setTag(Tag.astronaut);
         setTag(Tag.teleFraggable);
-        setSprite("Astronaut.png");
+        setSprite("Sprites\\Astronaut.png");
         getSprite().setFitWidth(30);
         getSprite().setFitHeight(30);
         setHitBoxSize(15);

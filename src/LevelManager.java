@@ -130,13 +130,13 @@ public class LevelManager extends GameObject{
         int size = LevelManager.random.nextInt(3);
         if(size == 0){
             asteroid.setTag(Tag.small);
-            asteroid.setSprite("smallAsteroid.png");
+            asteroid.setSprite("Sprites\\smallAsteroid.png");
             asteroid.getSprite().setFitWidth(50);
             asteroid.getSprite().setFitHeight(50);
             asteroid.setHitBoxSize(25);
         }else{
             asteroid.setTag(Tag.big);
-            asteroid.setSprite("Asteroid.png");
+            asteroid.setSprite("Sprites\\Asteroid.png");
             asteroid.getSprite().setFitWidth(100);
             asteroid.getSprite().setFitHeight(100);
             asteroid.setHitBoxSize(50);
@@ -152,7 +152,7 @@ public class LevelManager extends GameObject{
     }
     public void gameOver(){
         Font font = Font.font(52);
-        ImageView gameOverBackground = new ImageView(new Image("buttonBackground.jfif"));
+        ImageView gameOverBackground = new ImageView(new Image("Sprites\\buttonBackground.jfif"));
         gameOverBackground.setFitWidth(App.getWIDTH());
         gameOverBackground.setFitHeight(App.getHEIGHT());
         gameOverBackground.setX(0);
@@ -164,7 +164,7 @@ public class LevelManager extends GameObject{
         gameOver.setX(380);
         gameOver.setY(100);
         App.getRoot().getChildren().add(gameOver);
-        BackgroundImage backgroundImage = new BackgroundImage( new Image( "buttonBackground.jfif"), BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
+        BackgroundImage backgroundImage = new BackgroundImage( new Image( "Sprites\\buttonBackground.jfif"), BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
         Background background = new Background(backgroundImage);
         javafx.scene.control.Button restart = new Button("Restart");
        // restart.setBackground(background);
