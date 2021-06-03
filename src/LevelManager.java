@@ -1,5 +1,4 @@
 import javafx.geometry.Point2D;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
@@ -178,26 +177,26 @@ public class LevelManager extends GameObject{
         restart.setFont(font);
         restart.setOnAction(event -> {
             try {
-                app.launch();
+               App.getApp().launch();
             } catch (Exception e) {
                 e.printStackTrace();
             }
         });
-        javafx.scene.control.Button exit = new Button("Exit");
-       // exit.setBackground(background);
-        exit.setPrefWidth(300);
-        exit.setTranslateX(350);
-        exit.setTranslateY(540);
-        exit.setFont(font);
-        exit.setOnAction(event -> {
-            try {
-
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        });
+//        javafx.scene.control.Button exit = new Button("Exit");
+//       // exit.setBackground(background);
+//        exit.setPrefWidth(300);
+//        exit.setTranslateX(350);
+//        exit.setTranslateY(540);
+//        exit.setFont(font);
+//        exit.setOnAction(event -> {
+//            try {
+//                app.initMainMenu();
+//            } catch (Exception e) {
+//                e.printStackTrace();
+//            }
+//        });
         App.getRoot().getChildren().add(restart);
-        App.getRoot().getChildren().add(exit);
+//        App.getRoot().getChildren().add(exit);
     }
 
     public void onShootPressed(){
@@ -223,6 +222,7 @@ public class LevelManager extends GameObject{
 
     public void onUpPressed(){
         shipSoundPlayer.setVolume(App.getVolume()/2);
+        System.out.println(shipSoundPlayer.getTotalDuration());
         if(shipSoundPlayer.getCurrentTime().toMillis()>3400){
             shipSoundPlayer = new MediaPlayer(new Media(new File("Sounds\\SpaceShip_move.mp3").toURI().toString()));
         }

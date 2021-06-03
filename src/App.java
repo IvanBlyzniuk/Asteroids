@@ -8,17 +8,15 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.*;
-import javafx.scene.media.Media;
-import javafx.scene.media.MediaPlayer;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 
-import java.io.File;
 import java.util.ArrayList;
 
-public class App extends Application {
+public class App extends Application  {
+    public static App app = new App();
     private static Pane root;
     private static final int WIDTH = 1000;
     private static final int HEIGHT = 700;
@@ -26,26 +24,53 @@ public class App extends Application {
     private ArrayList<String> inputs = new ArrayList<>();
     private static double volume;
 
-    private String musicFile = "Sounds\\Soundtrack.mp3";
-    private Media sound = new Media(new File(musicFile).toURI().toString());
-    private MediaPlayer soundtrackPlayer = new MediaPlayer(sound);
-
     public App(){
         //TODO: delete later ----------------------------------------------------
         setVolume(0.1);
-        soundtrackPlayer.setVolume(getVolume());
-        soundtrackPlayer.play();
-        soundtrackPlayer.setCycleCount(MediaPlayer.INDEFINITE);
-        initMainMenu();
     }
 
     private static AnimationTimer timer;
     @Override
     public void start(Stage primaryStage) throws Exception {
+//        Scene scene = new Scene(createPanel());
+//        primaryStage.setScene(scene);
+//        primaryStage.show();
+//        scene.setOnKeyPressed(new EventHandler<KeyEvent>() {
+//            @Override
+//            public void handle(KeyEvent event) {
+//                String code = event.getCode().toString();
+//                if(!inputs.contains(code))
+//                    inputs.add(code);
+////                switch (event.getCode()) {
+////                    case W: LevelManager.getManager().onUpPressed();break;
+////                    case S: LevelManager.getManager().onDownPressed();break;
+////                    case A: LevelManager.getManager().onLeftPressed();break;
+////                    case D: LevelManager.getManager().onRightPressed();break;
+////                    case SPACE: LevelManager.getManager().onShootPressed();break;
+////                }
+//            }
+//        });
+//
+//        scene.setOnKeyReleased(new EventHandler<KeyEvent>() {
+//            @Override
+//            public void handle(KeyEvent e) {
+//                String code = e.getCode().toString();
+//                if(code.equals("W"))
+//                    LevelManager.getManager().onUpReleased();
+//                inputs.remove( code );
+//            }
+//        });
+
+    }
+
+    public static void stopGame(){
+        timer.stop();
+    }
+
+    public void launch() throws Exception {
         Scene scene = new Scene(createPanel());
         primaryStage.setScene(scene);
         primaryStage.show();
-//        System.out.println(soundtrackPlayer.getTotalDuration());
         scene.setOnKeyPressed(new EventHandler<KeyEvent>() {
             @Override
             public void handle(KeyEvent event) {
@@ -61,7 +86,6 @@ public class App extends Application {
 //                }
             }
         });
-
         scene.setOnKeyReleased(new EventHandler<KeyEvent>() {
             @Override
             public void handle(KeyEvent e) {
@@ -71,15 +95,6 @@ public class App extends Application {
                 inputs.remove( code );
             }
         });
-
-    }
-
-    public static void stopGame(){
-        timer.stop();
-    }
-
-    public void launch() throws Exception {
-        start(primaryStage);
     }
     private Parent createPanel(){
         Rectangle bg = new Rectangle(1000,1000);
@@ -183,7 +198,7 @@ public class App extends Application {
         App.volume = volume;
     }
 
-    public Stage getPrimaryStage() {
-        return primaryStage;
+    public static App getApp() {
+        return app;
     }
 }
