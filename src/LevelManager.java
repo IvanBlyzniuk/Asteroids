@@ -1,4 +1,6 @@
 import javafx.geometry.Point2D;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.util.Duration;
@@ -143,6 +145,14 @@ public class LevelManager extends GameObject{
         Pickup pickup = new Pickup();
         pickup.setX(x);
         pickup.setY(y);
+    }
+    public void gameOver(){
+        ImageView gameOverBackground = new ImageView(new Image("buttonBackground.jfif"));
+        gameOverBackground.setFitWidth(App.getWIDTH());
+        gameOverBackground.setFitHeight(App.getHEIGHT());
+        gameOverBackground.setX(0);
+        gameOverBackground.setY(0);
+        App.getRoot().getChildren().add(gameOverBackground);
     }
 
     public void onShootPressed(){

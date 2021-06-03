@@ -48,24 +48,26 @@ public class GameEngine {
     }
 
     private static void checkCollisions(GameObject obj1) {
-        boolean foundCollision = false;
-        for (GameObject obj2: gameObjects){
-            if(obj2 != manager && obj1 != obj2 && distBetween(obj1,obj2) <= obj1.getHitBoxSize()+obj2.getHitBoxSize()){
-                if(obj2 == obj1.getLastCollision()&&obj1.getTag().contains(Tag.teleFraggable)&&obj2.getTag().contains(Tag.teleFraggable)){
-                    if(obj1.getY()>obj2.getY()){
-                        obj1.move(new Point2D(0,1));
-                        obj2.move(new Point2D(0,-1));
-                    }else{
-                        obj1.move(new Point2D(0,-1));
-                        obj2.move(new Point2D(0,1));
+        if(gameObjects.size()>0) {
+            boolean foundCollision = false;
+            for (GameObject obj2 : gameObjects) {
+                if (obj2 != manager && obj1 != obj2 && distBetween(obj1, obj2) <= obj1.getHitBoxSize() + obj2.getHitBoxSize()) {
+                    if (obj2 == obj1.getLastCollision() && obj1.getTag().contains(Tag.teleFraggable) && obj2.getTag().contains(Tag.teleFraggable)) {
+                        if (obj1.getY() > obj2.getY()) {
+                            obj1.move(new Point2D(0, 1));
+                            obj2.move(new Point2D(0, -1));
+                        } else {
+                            obj1.move(new Point2D(0, -1));
+                            obj2.move(new Point2D(0, 1));
+                        }
                     }
+                    foundCollision = true;
+                    obj1.onCollision(obj2);
+                    obj1.setLastCollision(obj2);
                 }
-                foundCollision = true;
-                obj1.onCollision(obj2);
-                obj1.setLastCollision(obj2);
             }
+            if (!foundCollision) obj1.setLastCollision(null);
         }
-        if(!foundCollision) obj1.setLastCollision(null);
 
     }
 
@@ -89,5 +91,17 @@ public class GameEngine {
     public static void addGameObject(GameObject gameObject) {
         toAdd.add(gameObject);
 //        gameObjects.add(gameObject);
+    }
+
+    public void cleanScreen(){
+        for (GameObject obj: gameObjects) {
+            if(!toDelete.contains(obj));
+            remove(obj);
+        }
+        while(toDelete.size() > 0){
+            GameObject g = toDelete.pop();
+            gameObjects.remove(g);
+            App.getRoot().getChildren().remove(g.getSprite());
+        }
     }
 }

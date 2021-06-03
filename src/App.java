@@ -4,9 +4,10 @@ import javafx.event.EventHandler;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.layout.Pane;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.*;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
@@ -119,11 +120,13 @@ public class App extends Application {
         Pane menu = new Pane();
         menu.setPrefSize(1000,700);
         Rectangle bg = new Rectangle(1000,1000);
-        Font font = Font.font(72);
+        Font font = Font.font(52);
         Button start = new Button("Start");
-        start.setPrefWidth(500);
-
-        start.setTranslateX(250);
+        BackgroundImage backgroundImage = new BackgroundImage( new Image( "buttonBackground.jfif"), BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
+        Background background = new Background(backgroundImage);
+        start.setBackground(background);
+        start.setPrefWidth(300);
+        start.setTranslateX(350);
         start.setTranslateY(300);
         start.setFont(font);
         start.setOnAction(event -> {
@@ -133,8 +136,28 @@ public class App extends Application {
                 e.printStackTrace();
             }
         });
+        Button exit = new Button("Exit");
+        exit.setBackground(background);
+        exit.setPrefWidth(300);
+        exit.setTranslateX(350);
+        exit.setTranslateY(450);
+        exit.setFont(font);
+        exit.setOnAction(event -> {
+            try {
+                primaryStage.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        });
+        ImageView logo = new ImageView(new Image("logo.jfif"));
+        logo.setFitWidth(500);
+        logo.setFitHeight(200);
+        logo.setX(250);
+        logo.setY(50);
         menu.getChildren().add(bg);
         menu.getChildren().add(start);
+        menu.getChildren().add(exit);
+        menu.getChildren().add(logo);
         return menu;
     }
 
