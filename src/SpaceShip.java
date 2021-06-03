@@ -56,7 +56,6 @@ public class SpaceShip extends GameObject{
         }else if(other.getTag().contains(Tag.asteroid)){
 
         } else if(other.getTag().contains(Tag.astronaut)){
-           // SceneManager.setScore(SceneManager.getScore()+5);
             LevelManager.playPickupSound();
         }else if(other.getTag().contains(Tag.protectionPickup)){
             LevelManager.playPickupSound();
