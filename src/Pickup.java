@@ -25,7 +25,7 @@ public class Pickup extends GameObject{
             setTag(Tag.addOneRocketPickup);
             setSprite("Sprites\\rocket.png");
             getSprite().setFitWidth(18);
-            getSprite().setFitHeight(18);
+            getSprite().setFitHeight(24);
             setHitBoxSize(9);
         }
 

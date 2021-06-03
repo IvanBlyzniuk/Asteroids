@@ -12,7 +12,7 @@ public class Rocket extends GameObject{
         setSprite("Sprites\\rocket.png");
         setTag(Tag.rocket);
         getSprite().setFitWidth(15);
-        getSprite().setFitHeight(15);
+        getSprite().setFitHeight(20);
         setHitBoxSize(7.5);
 
         String musicFile = "Sounds\\Rocket.mp3";
