@@ -16,7 +16,6 @@ import java.io.File;
 import java.util.Random;
 
 public class LevelManager extends GameObject{
-    private App app = new App();
     private SpaceShip player;
     private static LevelManager theManager;
     public static final Random random = new Random();
@@ -45,9 +44,7 @@ public class LevelManager extends GameObject{
     }
 
     @Override
-    public void init() {
-        player = new SpaceShip();
-    }
+    public void init() { player = new SpaceShip(); }
 
     public static int getPickupSpawnCooldown() {
         return pickupSpawnCooldown;
@@ -182,21 +179,21 @@ public class LevelManager extends GameObject{
                 e.printStackTrace();
             }
         });
-//        javafx.scene.control.Button exit = new Button("Exit");
-//       // exit.setBackground(background);
-//        exit.setPrefWidth(300);
-//        exit.setTranslateX(350);
-//        exit.setTranslateY(540);
-//        exit.setFont(font);
-//        exit.setOnAction(event -> {
-//            try {
-//                app.initMainMenu();
-//            } catch (Exception e) {
-//                e.printStackTrace();
-//            }
-//        });
+        javafx.scene.control.Button exit = new Button("Exit");
+       // exit.setBackground(background);
+        exit.setPrefWidth(300);
+        exit.setTranslateX(350);
+        exit.setTranslateY(540);
+        exit.setFont(font);
+        exit.setOnAction(event -> {
+            try {
+                App.getApp().initMainMenu();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        });
         App.getRoot().getChildren().add(restart);
-//        App.getRoot().getChildren().add(exit);
+        App.getRoot().getChildren().add(exit);
     }
 
     public void onShootPressed(){
