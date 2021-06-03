@@ -8,11 +8,14 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.*;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 
+import java.io.File;
 import java.util.ArrayList;
 
 public class App extends Application {
@@ -23,10 +26,17 @@ public class App extends Application {
     private ArrayList<String> inputs = new ArrayList<>();
     private static double volume;
 
+    private String musicFile = "Sounds\\Soundtrack.mp3";
+    private Media sound = new Media(new File(musicFile).toURI().toString());
+    private MediaPlayer soundtrackPlayer = new MediaPlayer(sound);
+
     public App(){
         //TODO: delete later ----------------------------------------------------
         setVolume(0.1);
-
+        soundtrackPlayer.setVolume(getVolume());
+        soundtrackPlayer.play();
+        soundtrackPlayer.setCycleCount(MediaPlayer.INDEFINITE);
+        initMainMenu();
     }
 
     private static AnimationTimer timer;
@@ -35,9 +45,7 @@ public class App extends Application {
         Scene scene = new Scene(createPanel());
         primaryStage.setScene(scene);
         primaryStage.show();
-
-
-
+//        System.out.println(soundtrackPlayer.getTotalDuration());
         scene.setOnKeyPressed(new EventHandler<KeyEvent>() {
             @Override
             public void handle(KeyEvent event) {

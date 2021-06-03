@@ -223,7 +223,6 @@ public class LevelManager extends GameObject{
 
     public void onUpPressed(){
         shipSoundPlayer.setVolume(App.getVolume()/2);
-        System.out.println(shipSoundPlayer.getTotalDuration());
         if(shipSoundPlayer.getCurrentTime().toMillis()>3400){
             shipSoundPlayer = new MediaPlayer(new Media(new File("Sounds\\SpaceShip_move.mp3").toURI().toString()));
         }
