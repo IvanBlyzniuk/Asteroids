@@ -27,7 +27,6 @@ public class App extends Application {
         //TODO: delete later ----------------------------------------------------
         setVolume(0.1);
 
-        initMainMenu();
     }
 
     private static AnimationTimer timer;
@@ -174,5 +173,9 @@ public class App extends Application {
 
     public static void setVolume(double volume) {
         App.volume = volume;
+    }
+
+    public Stage getPrimaryStage() {
+        return primaryStage;
     }
 }

@@ -1,15 +1,23 @@
 import javafx.geometry.Point2D;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.*;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
+import javafx.scene.text.Text;
 import javafx.util.Duration;
 
+import java.awt.*;
 import java.io.File;
 import java.util.Random;
 
 public class LevelManager extends GameObject{
-
+    private App app = new App();
     private SpaceShip player;
     private static LevelManager theManager;
     public static final Random random = new Random();
@@ -147,12 +155,49 @@ public class LevelManager extends GameObject{
         pickup.setY(y);
     }
     public void gameOver(){
+        Font font = Font.font(52);
         ImageView gameOverBackground = new ImageView(new Image("buttonBackground.jfif"));
         gameOverBackground.setFitWidth(App.getWIDTH());
         gameOverBackground.setFitHeight(App.getHEIGHT());
         gameOverBackground.setX(0);
         gameOverBackground.setY(0);
         App.getRoot().getChildren().add(gameOverBackground);
+        Text gameOver = new Text("Game Over");
+        gameOver.setFont(font);
+        gameOver.setFill(Color.web("fabbff"));
+        gameOver.setX(380);
+        gameOver.setY(100);
+        App.getRoot().getChildren().add(gameOver);
+        BackgroundImage backgroundImage = new BackgroundImage( new Image( "buttonBackground.jfif"), BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
+        Background background = new Background(backgroundImage);
+        javafx.scene.control.Button restart = new Button("Restart");
+       // restart.setBackground(background);
+        restart.setPrefWidth(300);
+        restart.setTranslateX(350);
+        restart.setTranslateY(300);
+        restart.setFont(font);
+        restart.setOnAction(event -> {
+            try {
+                app.launch();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        });
+        javafx.scene.control.Button exit = new Button("Exit");
+       // exit.setBackground(background);
+        exit.setPrefWidth(300);
+        exit.setTranslateX(350);
+        exit.setTranslateY(540);
+        exit.setFont(font);
+        exit.setOnAction(event -> {
+            try {
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        });
+        App.getRoot().getChildren().add(restart);
+        App.getRoot().getChildren().add(exit);
     }
 
     public void onShootPressed(){
