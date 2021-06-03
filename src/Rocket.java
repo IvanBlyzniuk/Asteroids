@@ -1,4 +1,12 @@
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
+
+import java.io.File;
+
 public class Rocket extends GameObject{
+
+    private MediaPlayer mediaPlayer;
+
     @Override
     public void init() {
         setSprite("rocket.png");
@@ -6,6 +14,12 @@ public class Rocket extends GameObject{
         getSprite().setFitWidth(15);
         getSprite().setFitHeight(15);
         setHitBoxSize(7.5);
+
+        String musicFile = "Sounds\\Rocket.mp3";
+        Media sound = new Media(new File(musicFile).toURI().toString());
+        mediaPlayer = new MediaPlayer(sound);
+        mediaPlayer.setVolume(App.getVolume()/2);
+        mediaPlayer.play();
     }
 
     @Override
@@ -19,8 +33,10 @@ public class Rocket extends GameObject{
     public void onCollision(GameObject other) {
         if(other.getTag().contains(Tag.asteroid)||other.getTag().contains(Tag.astronaut)){
             remove();
+            mediaPlayer.stop();
             Explosion explosion = new Explosion();
             explosion.moveCentreTo(getCentreX(),getCentreY());
         }
     }
+
 }

@@ -17,6 +17,8 @@ public class GameEngine {
 
     private static LevelManager manager;
 
+    private static boolean needToCleanScreen;
+
     private static int iter = 0;
 
     private GameEngine(){
@@ -45,6 +47,11 @@ public class GameEngine {
             gameObjects.remove(g);
             App.getRoot().getChildren().remove(g.getSprite());
         }
+        if(needToCleanScreen) cleanScreen();
+    }
+
+    public static void setNeedToCleanScreen(boolean needToCleanScreen) {
+        GameEngine.needToCleanScreen = needToCleanScreen;
     }
 
     private static void checkCollisions(GameObject obj1) {
@@ -93,7 +100,7 @@ public class GameEngine {
 //        gameObjects.add(gameObject);
     }
 
-    public void cleanScreen(){
+    public static void cleanScreen(){
         for (GameObject obj: gameObjects) {
             if(!toDelete.contains(obj));
             remove(obj);
