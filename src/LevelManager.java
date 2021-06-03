@@ -16,7 +16,6 @@ import java.io.File;
 import java.util.Random;
 
 public class LevelManager extends GameObject{
-    private App app = new App();
     private SpaceShip player;
     private static LevelManager theManager;
     public static final Random random = new Random();
