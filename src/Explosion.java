@@ -1,3 +1,8 @@
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
+
+import java.io.File;
+
 public class Explosion extends GameObject{
 
     private int timeToLive;
@@ -11,6 +16,11 @@ public class Explosion extends GameObject{
         getSprite().setFitHeight(200);
         setTag(Tag.explosion);
         setHitBoxSize(100);
+        String musicFile = "Sounds\\Explosion.mp3";
+        Media sound = new Media(new File(musicFile).toURI().toString());
+        MediaPlayer mediaPlayer = new MediaPlayer(sound);
+        mediaPlayer.setVolume(App.getVolume());
+        mediaPlayer.play();
     }
 
     @Override
