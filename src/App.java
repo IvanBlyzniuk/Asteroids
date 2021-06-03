@@ -10,8 +10,10 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.*;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
+import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 import java.io.File;
@@ -26,6 +28,11 @@ public class App extends Application  {
     private ArrayList<String> inputs = new ArrayList<>();
     private static double volume;
     MediaPlayer mediaPlayer;
+
+    private static ArrayList<ImageView> lives;
+
+    private static Text scoreText;
+    private static Text rocketsCountText;
 
 
     public App(){
@@ -43,35 +50,6 @@ public class App extends Application  {
     private static AnimationTimer timer;
     @Override
     public void start(Stage primaryStage) throws Exception {
-//        Scene scene = new Scene(createPanel());
-//        primaryStage.setScene(scene);
-//        primaryStage.show();
-//        scene.setOnKeyPressed(new EventHandler<KeyEvent>() {
-//            @Override
-//            public void handle(KeyEvent event) {
-//                String code = event.getCode().toString();
-//                if(!inputs.contains(code))
-//                    inputs.add(code);
-////                switch (event.getCode()) {
-////                    case W: LevelManager.getManager().onUpPressed();break;
-////                    case S: LevelManager.getManager().onDownPressed();break;
-////                    case A: LevelManager.getManager().onLeftPressed();break;
-////                    case D: LevelManager.getManager().onRightPressed();break;
-////                    case SPACE: LevelManager.getManager().onShootPressed();break;
-////                }
-//            }
-//        });
-//
-//        scene.setOnKeyReleased(new EventHandler<KeyEvent>() {
-//            @Override
-//            public void handle(KeyEvent e) {
-//                String code = e.getCode().toString();
-//                if(code.equals("W"))
-//                    LevelManager.getManager().onUpReleased();
-//                inputs.remove( code );
-//            }
-//        });
-
     }
 
     public static void stopGame(){
@@ -82,20 +60,12 @@ public class App extends Application  {
         Scene scene = new Scene(createPanel());
         primaryStage.setScene(scene);
         primaryStage.show();
-        System.out.println(1);
         scene.setOnKeyPressed(new EventHandler<KeyEvent>() {
             @Override
             public void handle(KeyEvent event) {
                 String code = event.getCode().toString();
                 if(!inputs.contains(code))
                     inputs.add(code);
-//                switch (event.getCode()) {
-//                    case W: LevelManager.getManager().onUpPressed();break;
-//                    case S: LevelManager.getManager().onDownPressed();break;
-//                    case A: LevelManager.getManager().onLeftPressed();break;
-//                    case D: LevelManager.getManager().onRightPressed();break;
-//                    case SPACE: LevelManager.getManager().onShootPressed();break;
-//                }
             }
         });
         scene.setOnKeyReleased(new EventHandler<KeyEvent>() {
@@ -113,6 +83,38 @@ public class App extends Application  {
         root = new Pane();
         root.setPrefSize(WIDTH,HEIGHT);
         root.getChildren().add(bg);
+
+        scoreText = new Text("Score: ");
+        scoreText.setX(getWIDTH()/2-50);
+        scoreText.setY(40);
+        scoreText.setFont(new Font(25));
+        scoreText.setFill(Color.web("ffcc00"));
+        root.getChildren().add(scoreText);
+
+        ImageView rocketsIcon = new ImageView(new Image("Sprites\\RocketsIcon.png"));
+        rocketsIcon.setFitHeight(40);
+        rocketsIcon.setFitWidth(40);
+        rocketsIcon.setX(getWIDTH()-100);
+        rocketsIcon.setY(getHEIGHT()-50);
+        root.getChildren().add(rocketsIcon);
+
+        lives = new ArrayList<>();
+        for (int i=0;i<3;i++){
+            lives.add(new ImageView(new Image("Sprites\\SpaceShip.png")));
+            lives.get(i).setFitWidth(30);
+            lives.get(i).setFitHeight(30);
+            lives.get(i).setY(getHEIGHT()-40);
+            lives.get(i).setX(10 + 40*i);
+            root.getChildren().add(lives.get(i));
+        }
+
+        rocketsCountText = new Text("0");
+        rocketsCountText.setX(getWIDTH() - 50);
+        rocketsCountText.setY(getHEIGHT()-20);
+        rocketsCountText.setFont(new Font(30));
+        rocketsCountText.setFill(Color.web("ffcc00"));
+        root.getChildren().add(rocketsCountText);
+
         GameEngine.startGame();
         timer = new AnimationTimer() {
             @Override
@@ -256,5 +258,18 @@ public class App extends Application  {
 
     public MediaPlayer getMediaPlayer() {
         return mediaPlayer;
+    }
+
+    public static void updateScore(){
+        scoreText.setText("Score: "+LevelManager.getManager().getScore());
+    }
+
+    public static void updateRocketsCount(){
+        rocketsCountText.setText(Integer.toString(LevelManager.getManager().getRocketsNumber()));
+    }
+
+    public static void removeLife(){
+        App.getRoot().getChildren().remove(lives.get(lives.size()-1));
+        lives.remove(lives.size()-1);
     }
 }

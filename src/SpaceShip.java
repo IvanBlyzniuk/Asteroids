@@ -50,9 +50,10 @@ public class SpaceShip extends GameObject{
 
     public void onCollision(GameObject other){
         if(other.getTag().contains(Tag.asteroid)&&vulnerable){
-            App.stopGame();
-            GameEngine.setNeedToCleanScreen(true);
-            LevelManager.getManager().gameOver();
+            LevelManager.getManager().removeLife();
+//            App.stopGame();
+//            GameEngine.setNeedToCleanScreen(true);
+//            LevelManager.getManager().gameOver();
         }else if(other.getTag().contains(Tag.asteroid)){
 
         } else if(other.getTag().contains(Tag.astronaut)){

@@ -21,6 +21,7 @@ public class LevelManager extends GameObject{
     private int asteroidsMaxNumber = 7;
     private int astronautsNumber = 0;
     private int astronautsMaxNumber = 1;
+    private static int lives = 3;
 
     private static int pickupSpawnCooldown;
 
@@ -38,6 +39,7 @@ public class LevelManager extends GameObject{
 
     public static void initManager() {
         theManager = new LevelManager();
+        lives = 3;
     }
 
     @Override
@@ -53,8 +55,8 @@ public class LevelManager extends GameObject{
 
     @Override
     public void update() {
-
-//        System.out.println("Spaceship coords x = "+player.getX()+" y = "+player.getY());
+        App.updateScore();
+        App.updateRocketsCount();
 
         if(pickupSpawnCooldown > 0){
             pickupSpawnCooldown--;
@@ -246,6 +248,7 @@ public class LevelManager extends GameObject{
     public void onShiftPressed(){
         if(player.getRechargeTimer()<=0){
             if(player.getInfiniteRocketsTimer()>0||player.getRocketsNumber()>0) {
+                player.setRocketsNumber(player.getRocketsNumber() - 1);
                 Rocket rocket = new Rocket();
                 player.setRechargeTimer(50);
                 rocket.moveCentreTo(player.getCentreX(), player.getCentreY());
@@ -396,5 +399,21 @@ public class LevelManager extends GameObject{
 
     public void setAstronautsNumber(int astronautsNumber) {
         this.astronautsNumber = astronautsNumber;
+    }
+
+    public int getRocketsNumber(){
+        return (int)player.getRocketsNumber();
+    }
+
+    public void removeLife(){
+        if(lives > 0){
+            player.setProtectionTimer(60);
+            App.removeLife();
+            lives--;
+        }else{
+            App.stopGame();
+            GameEngine.setNeedToCleanScreen(true);
+            LevelManager.getManager().gameOver();
+        }
     }
 }
