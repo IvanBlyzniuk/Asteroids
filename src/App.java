@@ -71,6 +71,7 @@ public class App extends Application  {
         Scene scene = new Scene(createPanel());
         primaryStage.setScene(scene);
         primaryStage.show();
+        System.out.println(1);
         scene.setOnKeyPressed(new EventHandler<KeyEvent>() {
             @Override
             public void handle(KeyEvent event) {

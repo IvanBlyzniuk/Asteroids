@@ -26,6 +26,7 @@ public class GameEngine {
     }
 
     public static void startGame(){
+        setNeedToCleanScreen(false);
         LevelManager.initManager();
         manager = LevelManager.getManager();
     }
