@@ -19,14 +19,12 @@ public class GameEngine {
 
     private static boolean needToCleanScreen;
 
-    private static int iter = 0;
-
     private GameEngine(){
 
     }
 
     public static void startGame(){
-        setNeedToCleanScreen(false);
+        needToCleanScreen = false;
         LevelManager.initManager();
         manager = LevelManager.getManager();
     }
