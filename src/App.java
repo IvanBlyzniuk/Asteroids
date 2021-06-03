@@ -13,7 +13,6 @@ import javafx.scene.media.MediaPlayer;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
-import javafx.stage.WindowEvent;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -36,7 +35,7 @@ public class App extends Application  {
         String musicFile = "Sounds\\Soundtrack.mp3";
         Media sound = new Media(new File(musicFile).toURI().toString());
         mediaPlayer = new MediaPlayer(sound);
-        mediaPlayer.setVolume(App.getVolume());
+        mediaPlayer.setVolume(App.getVolume()/2);
         mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
         mediaPlayer.play();
     }
@@ -118,6 +117,7 @@ public class App extends Application  {
         timer = new AnimationTimer() {
             @Override
             public void handle(long now) {
+                if(inputs.contains("ESCAPE")) LevelManager.getManager().onEscPressed();
                 if(inputs.contains("W")) LevelManager.getManager().onUpPressed();
                 if(inputs.contains("A")) LevelManager.getManager().onLeftPressed();
                 if(inputs.contains("D")) LevelManager.getManager().onRightPressed();
@@ -162,7 +162,7 @@ public class App extends Application  {
         start.setBackground(background);
         start.setPrefWidth(300);
         start.setTranslateX(350);
-        start.setTranslateY(300);
+        start.setTranslateY(350);
         start.setFont(font);
         start.setOnAction(event -> {
             try {
@@ -175,7 +175,7 @@ public class App extends Application  {
         exit.setBackground(background);
         exit.setPrefWidth(300);
         exit.setTranslateX(350);
-        exit.setTranslateY(540);
+        exit.setTranslateY(490);
         exit.setFont(font);
         exit.setOnAction(event -> {
             try {
@@ -184,22 +184,57 @@ public class App extends Application  {
                 e.printStackTrace();
             }
         });
-        Button options = new Button("Options");
-        options.setBackground(background);
-        options.setPrefWidth(300);
-        options.setTranslateX(350);
-        options.setTranslateY(420);
-        options.setFont(font);
+        Button plus = new Button("+");
+        //plus.setBackground(background);
+        plus.setPrefWidth(50);
+        plus.setPrefHeight(50);
+        plus.setTranslateX(155);
+        plus.setTranslateY(540);
+        plus.setFont(new Font(20));
+        plus.setOnAction(event -> {
+            try {
+                if(getVolume()<1) {
+                    setVolume(getVolume() + 0.1);
+                    mediaPlayer.setVolume(App.getVolume()/2);
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        });
+        Button minus = new Button("-");
+        //minus.setBackground(background);
+        minus.setPrefWidth(50);
+        minus.setPrefHeight(50);
+        minus.setTranslateX(45);
+        minus.setTranslateY(540);
+        minus.setFont(new Font(20));
+        minus.setOnAction(event -> {
+            try {
+                if(getVolume()>0) {
+                    setVolume(getVolume() - 0.1);
+                    mediaPlayer.setVolume(App.getVolume()/2);
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        });
         ImageView logo = new ImageView(new Image("Sprites\\logo.jfif"));
         logo.setFitWidth(500);
         logo.setFitHeight(200);
         logo.setX(250);
         logo.setY(50);
+        ImageView volume = new ImageView(new Image("Sprites\\volume.jpg"));
+        volume.setFitWidth(50);
+        volume.setFitHeight(50);
+        volume.setX(100);
+        volume.setY(540);
         menu.getChildren().add(bg);
+        menu.getChildren().add(plus);
+        menu.getChildren().add(minus);
         menu.getChildren().add(start);
         menu.getChildren().add(exit);
-        menu.getChildren().add(options);
         menu.getChildren().add(logo);
+        menu.getChildren().add(volume);
         return menu;
     }
 
@@ -213,5 +248,13 @@ public class App extends Application  {
 
     public static App getApp() {
         return app;
+    }
+
+    public static AnimationTimer getTimer() {
+        return timer;
+    }
+
+    public MediaPlayer getMediaPlayer() {
+        return mediaPlayer;
     }
 }

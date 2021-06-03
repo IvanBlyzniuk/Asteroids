@@ -1,6 +1,5 @@
 import javafx.geometry.Point2D;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
@@ -9,9 +8,7 @@ import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
-import javafx.util.Duration;
 
-import java.awt.*;
 import java.io.File;
 import java.util.Random;
 
@@ -20,7 +17,7 @@ public class LevelManager extends GameObject{
     private static LevelManager theManager;
     public static final Random random = new Random();
     private int asteroidsNumber = 0;
-
+    private boolean timerStopped = false;
     private int asteroidsMaxNumber = 7;
     private int astronautsNumber = 0;
     private int astronautsMaxNumber = 1;
@@ -170,7 +167,7 @@ public class LevelManager extends GameObject{
        // restart.setBackground(background);
         restart.setPrefWidth(300);
         restart.setTranslateX(350);
-        restart.setTranslateY(300);
+        restart.setTranslateY(320);
         restart.setFont(font);
         restart.setOnAction(event -> {
             try {
@@ -183,7 +180,7 @@ public class LevelManager extends GameObject{
        // exit.setBackground(background);
         exit.setPrefWidth(300);
         exit.setTranslateX(350);
-        exit.setTranslateY(540);
+        exit.setTranslateY(440);
         exit.setFont(font);
         exit.setOnAction(event -> {
             try {
@@ -256,6 +253,95 @@ public class LevelManager extends GameObject{
                 rocket.setSpeed(new Point2D(11 * Math.cos(Math.toRadians(rocket.getRotation() - 90)), 11 * Math.sin(Math.toRadians(rocket.getRotation() - 90))));
             }
         }
+    }
+
+    public void onEscPressed(){
+        if(!timerStopped){
+            App.getTimer().stop();
+            timerStopped=true;
+            ImageView bg = new ImageView(new Image("Sprites\\pause_screen.png"));
+            bg.setFitHeight(App.getHEIGHT());
+            bg.setFitWidth(App.getWIDTH());
+            App.getRoot().getChildren().add(bg);
+            Button cont = new Button("Continue");
+            cont.setFont(new Font(50));
+            cont.setPrefWidth(300);
+            cont.setTranslateX(350);
+            cont.setTranslateY(200);
+            App.getRoot().getChildren().add(cont);
+            Button exit = new Button("Exit");
+            exit.setFont(new Font(50));
+            exit.setPrefWidth(300);
+            exit.setTranslateX(350);
+            exit.setTranslateY(400);
+            App.getRoot().getChildren().add(exit);
+            Button plus = new Button("+");
+            //plus.setBackground(background);
+            plus.setPrefWidth(50);
+            plus.setPrefHeight(50);
+            plus.setTranslateX(155);
+            plus.setTranslateY(540);
+            plus.setFont(new Font(20));
+            plus.setOnAction(event -> {
+                try {
+                    if(App.getVolume()<1) {
+                        App.setVolume(App.getVolume() + 0.1);
+                        App.getApp().getMediaPlayer().setVolume(App.getVolume()/2);
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            });
+            Button minus = new Button("-");
+            //minus.setBackground(background);
+            minus.setPrefWidth(50);
+            minus.setPrefHeight(50);
+            minus.setTranslateX(45);
+            minus.setTranslateY(540);
+            minus.setFont(new Font(20));
+            minus.setOnAction(event -> {
+                try {
+                    if(App.getVolume()>0) {
+                        App.setVolume(App.getVolume() - 0.1);
+                        App.getApp().getMediaPlayer().setVolume(App.getVolume()/2);
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            });
+            ImageView volume = new ImageView(new Image("Sprites/volume.jpg"));
+            volume.setFitWidth(50);
+            volume.setFitHeight(50);
+            volume.setX(100);
+            volume.setY(540);
+            cont.setOnAction(event -> {
+                try {
+                    App.getRoot().getChildren().remove(bg);
+                    App.getRoot().getChildren().remove(cont);
+                    App.getRoot().getChildren().remove(exit);
+                    App.getRoot().getChildren().remove(plus);
+                    App.getRoot().getChildren().remove(minus);
+                    App.getRoot().getChildren().remove(volume);
+                    App.getTimer().start();
+                    timerStopped=false;
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            });
+            exit.setOnAction(event -> {
+                try {
+                    GameEngine.cleanScreen();
+                    App.getApp().initMainMenu();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            });
+            App.getRoot().getChildren().add(volume);
+            App.getRoot().getChildren().add(plus);
+            App.getRoot().getChildren().add(minus);
+
+        }
+
     }
 
 
