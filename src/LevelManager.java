@@ -36,9 +36,6 @@ public class LevelManager extends GameObject{
 
     MediaPlayer shipSoundPlayer = new MediaPlayer(new Media(new File("Sounds\\SpaceShip_move.mp3").toURI().toString()));
 
-    private LevelManager(){
-    }
-
     public static LevelManager getManager(){
         return theManager;
     }
@@ -62,6 +59,9 @@ public class LevelManager extends GameObject{
 
     @Override
     public void update() {
+
+//        System.out.println("Spaceship coords x = "+player.getX()+" y = "+player.getY());
+
         if(pickupSpawnCooldown > 0){
             pickupSpawnCooldown--;
         }
@@ -222,7 +222,6 @@ public class LevelManager extends GameObject{
 
     public void onUpPressed(){
         shipSoundPlayer.setVolume(App.getVolume()/2);
-        System.out.println(shipSoundPlayer.getTotalDuration());
         if(shipSoundPlayer.getCurrentTime().toMillis()>3400){
             shipSoundPlayer = new MediaPlayer(new Media(new File("Sounds\\SpaceShip_move.mp3").toURI().toString()));
         }
