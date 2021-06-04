@@ -38,22 +38,40 @@ public class LevelManager extends GameObject{
         return theManager;
     }
 
+    /**
+     * creates the level manager
+     */
     public static void initManager() {
         theManager = new LevelManager();
         lives = 3;
     }
 
+    /**
+     * creates the player
+     */
     @Override
     public void init() { player = new SpaceShip(); }
 
+    /**
+     * @return pickupSpawnCooldown in milliseconds
+     */
     public static int getPickupSpawnCooldown() {
         return pickupSpawnCooldown;
     }
 
+    /**
+     * sets the pickup spawn cooldown
+     * @param pickupSpawnCooldown time in milliseconds
+     */
     public static void setPickupSpawnCooldown(int pickupSpawnCooldown) {
         LevelManager.pickupSpawnCooldown = pickupSpawnCooldown;
     }
 
+    /**
+     * <p>updates the game creating asteroids and astronauts </p>
+     * <p>updates the score and levels</p>
+     * <p>updates the rockets counter</p>
+     */
     @Override
     public void update() {
         App.updateScore();
@@ -76,6 +94,10 @@ public class LevelManager extends GameObject{
             astronautsNumber++;
         }
     }
+
+    /**
+     * creates new astronaut
+     */
     public void createAstronaut(){
         double x = 0;
         double y = 0;
@@ -104,6 +126,9 @@ public class LevelManager extends GameObject{
         astronaut.setSpeedM(speed,angle);
     }
 
+    /**
+     * creates new asteroid
+     */
     public void createAsteroid(){
         double x = 0;
         double y = 0;
@@ -146,11 +171,23 @@ public class LevelManager extends GameObject{
         asteroid.setY(y);
         asteroid.setSpeedM(speed,angle);
     }
+
+    /**
+     * creates new pickup
+     * @param x coordinate
+     * @param y coordinate
+     */
     public void createPickup(double x, double y){
         Pickup pickup = new Pickup();
         pickup.setX(x);
         pickup.setY(y);
     }
+
+    /**
+     * <p>creates the game over screen with two active buttons</p>
+     * <p>restart button starts the new game</p>
+     * <p>exit button returns us to the main menu</p>
+     */
     public void gameOver(){
         Font font = Font.font(52);
         ImageView gameOverBackground = new ImageView(new Image("Sprites\\buttonBackground.jfif"));
@@ -197,6 +234,9 @@ public class LevelManager extends GameObject{
         App.getRoot().getChildren().add(exit);
     }
 
+    /**
+     * creates bullets if space is pressed
+     */
     public void onShootPressed(){
         if(player.getRechargeTimer()<=0) {
             playShootingSound();
@@ -218,6 +258,9 @@ public class LevelManager extends GameObject{
         }
     }
 
+    /**
+     * makes the player move
+     */
     public void onUpPressed(){
         shipSoundPlayer.setVolume(App.getVolume()/2);
         if(shipSoundPlayer.getCurrentTime().toMillis()>3400){
@@ -229,24 +272,40 @@ public class LevelManager extends GameObject{
         }
     }
 
+    /**
+     * stops moving sound and moving
+     */
     public void onUpReleased(){
         shipSoundPlayer.stop();
     }
 
+    /**
+     * stops the player
+     */
     public void onDownPressed(){
         player.setSpeed(new Point2D(player.getSpeed().getX()*0.9,player.getSpeed().getY()*0.9));
 
     }
 
+    /**
+     * rotate player to left
+     */
     public void onLeftPressed(){
         player.setRotation(player.getRotation()-3);
 
     }
 
+    /**
+     * rotate player to right
+     */
     public void onRightPressed(){
         player.setRotation(player.getRotation()+3);
 
     }
+
+    /**
+     * creates a new rocket if "SHIFT" is pressed
+     */
     public void onShiftPressed(){
         if(player.getRechargeTimer()<=0){
             if(player.getInfiniteRocketsTimer()>0||player.getRocketsNumber()>0) {
@@ -262,6 +321,9 @@ public class LevelManager extends GameObject{
         }
     }
 
+    /**
+     * stop the game and creates the pause menu
+     */
     public void onEscPressed(){
         if(!timerStopped){
             App.getTimer().stop();
@@ -351,23 +413,37 @@ public class LevelManager extends GameObject{
 
     }
 
-
+    /**
+     * @param asteroidsNumber number of asteroids
+     */
     public void setAsteroidsNumber(int asteroidsNumber) {
         this.asteroidsNumber = asteroidsNumber;
     }
 
+    /**
+     * @return number of asteroids
+     */
     public int getAsteroidsNumber() {
         return asteroidsNumber;
     }
 
+    /**
+     * @return true if we can spawn a new pickup
+     */
     public boolean isCanSpawnPickup() {
         return canSpawnPickup;
     }
 
+    /**
+     * @param canSpawnPickup boolean which determines if we can spawn a pickup
+     */
     public void setCanSpawnPickup(boolean canSpawnPickup) {
         this.canSpawnPickup = canSpawnPickup;
     }
 
+    /**
+     * plays the shooting sound
+     */
     public static void playShootingSound(){
         String musicFile = "Sounds\\Shoot.mp3";
         Media sound = new Media(new File(musicFile).toURI().toString());
@@ -375,7 +451,9 @@ public class LevelManager extends GameObject{
         mediaPlayer.setVolume(App.getVolume());
         mediaPlayer.play();
     }
-
+    /**
+     * plays the pickup sound
+     */
     public static void playPickupSound(){
         String musicFile = "Sounds\\Pickup.mp3";
         Media sound = new Media(new File(musicFile).toURI().toString());
@@ -384,31 +462,53 @@ public class LevelManager extends GameObject{
         mediaPlayer.play();
     }
 
+    /**
+     * @return score
+     */
     public int getScore() {
         return score;
     }
 
+    /**
+     * @param toAdd number to add to score
+     */
     public void incScore(int toAdd) {
         score+=toAdd;
     }
+
+    /**
+     * @param toDec number to lower the score
+     */
     public void decScore(int toDec) {
         score-=toDec;
         if(score<0)
             score=0;
     }
 
+    /**
+     * @return number of astronauts
+     */
     public int getAstronautsNumber() {
         return astronautsNumber;
     }
 
+    /**
+     * @param astronautsNumber number of astronauts
+     */
     public void setAstronautsNumber(int astronautsNumber) {
         this.astronautsNumber = astronautsNumber;
     }
 
+    /**
+     * @return number of rockets
+     */
     public int getRocketsNumber(){
         return (int)player.getRocketsNumber();
     }
 
+    /**
+     * remove one life
+     */
     public void removeLife(){
         if(lives > 0){
             player.setProtectionTimer(60);
@@ -420,6 +520,10 @@ public class LevelManager extends GameObject{
             LevelManager.getManager().gameOver();
         }
     }
+
+    /**
+     * checks the current level
+     */
     public void checkLevel(){
         if(score<50){
             level = 1;
@@ -451,6 +555,9 @@ public class LevelManager extends GameObject{
         }
     }
 
+    /**
+     * @return the current level
+     */
     public int getLevel() {
         return level;
     }
