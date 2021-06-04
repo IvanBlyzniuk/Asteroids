@@ -1,3 +1,6 @@
+/**
+ * class which describes the bullet
+ */
 public class Bullet extends GameObject{
     @Override
     public void init() {

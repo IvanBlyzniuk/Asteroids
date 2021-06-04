@@ -3,6 +3,9 @@ import javafx.scene.media.MediaPlayer;
 
 import java.io.File;
 
+/**
+ * class which describes the attacking rocket
+ */
 public class Rocket extends GameObject{
 
     private MediaPlayer mediaPlayer;

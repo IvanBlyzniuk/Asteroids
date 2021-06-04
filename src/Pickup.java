@@ -1,3 +1,6 @@
+/**
+ * class which describes all three types of pickups
+ */
 public class Pickup extends GameObject{
 
     public void init(){

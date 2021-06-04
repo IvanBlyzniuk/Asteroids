@@ -1,3 +1,11 @@
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
+
+import java.io.File;
+
+/**
+ * class which describes the player`s spaceship
+ */
 public class SpaceShip extends GameObject{
     private boolean vulnerable = true;
     private double acceleration = 1.1;
@@ -51,6 +59,12 @@ public class SpaceShip extends GameObject{
     public void onCollision(GameObject other){
         if(other.getTag().contains(Tag.asteroid)&&vulnerable){
             LevelManager.getManager().removeLife();
+            //Spaceship_crash.mp3
+            String musicFile = "Sounds\\Spaceship_crash.mp3";
+            Media sound = new Media(new File(musicFile).toURI().toString());
+            MediaPlayer mediaPlayer = new MediaPlayer(sound);
+            mediaPlayer.setVolume(App.getVolume()*2);
+            mediaPlayer.play();
         }else if(other.getTag().contains(Tag.asteroid)){
 
         } else if(other.getTag().contains(Tag.astronaut)){
@@ -102,43 +116,73 @@ public class SpaceShip extends GameObject{
     public double getTripleShotTimer() {
         return tripleShotTimer;
     }
-    
+
+    /**
+     * @return protectionTimer
+     */
     public double getProtectionTimer() {
         return protectionTimer;
     }
 
+    /**
+     * @param protectionTimer protection time
+     */
     public void setProtectionTimer(double protectionTimer) {
         this.protectionTimer = protectionTimer;
     }
 
+    /**
+     * @param tripleShotTimer
+     */
     public void setTripleShotTimer(double tripleShotTimer) {
         this.tripleShotTimer = tripleShotTimer;
     }
 
+    /**
+     * @return rocketsNumber
+     */
     public double getRocketsNumber() {
         return rocketsNumber;
     }
 
+    /**
+     * @param rocketsNumber number of rockets
+     */
     public void setRocketsNumber(double rocketsNumber) {
         this.rocketsNumber = rocketsNumber;
     }
 
+    /**
+     * @return speed limit
+     */
     public double getSpeedLimit() {
         return speedLimit;
     }
 
+    /**
+     * @return acceleration
+     */
     public double getAcceleration() {
         return acceleration;
     }
 
+    /**
+     * @param acceleration acceleration value
+     */
     public void setAcceleration(double acceleration) {
         this.acceleration = acceleration;
     }
 
+    /**
+     * @return rechargeTimer
+     */
     public double getRechargeTimer() {
         return rechargeTimer;
     }
 
+    /**
+     * @param livingTimer timer for fire recharge
+     */
     public void setRechargeTimer(double livingTimer) {
         this.rechargeTimer = livingTimer;
     }
