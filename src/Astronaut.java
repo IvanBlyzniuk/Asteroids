@@ -1,5 +1,10 @@
 import javafx.geometry.Point2D;
 
+/**
+ * Astronaut that can be picked up by player which gives him 5 points.
+ * If killed by bullets or rockets, will decrease the score by 10
+ * Collides with asteroids according to circle collision physics
+ */
 public class Astronaut extends GameObject{
     private Point2D newSpeed;
     private boolean needToChangeSpeed;
