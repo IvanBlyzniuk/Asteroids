@@ -12,6 +12,9 @@ import javafx.scene.text.Text;
 import java.io.File;
 import java.util.Random;
 
+/**
+ * class which rules the gaming process and creates different game objects
+ */
 public class LevelManager extends GameObject{
     private SpaceShip player;
     private static LevelManager theManager;

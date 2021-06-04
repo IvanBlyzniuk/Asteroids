@@ -19,12 +19,15 @@ import javafx.stage.Stage;
 import java.io.File;
 import java.util.ArrayList;
 
+/**
+ * class that creates the main menu panel and starts the game
+ */
 public class App extends Application  {
     public static App app = new App();
     private static Pane root;
     private static final int WIDTH = 1000;
     private static final int HEIGHT = 700;
-    Stage primaryStage = new Stage();
+    private Stage primaryStage = new Stage();
     private ArrayList<String> inputs = new ArrayList<>();
     private static double volume;
     MediaPlayer mediaPlayer;
@@ -33,8 +36,11 @@ public class App extends Application  {
 
     private static Text scoreText;
     private static Text rocketsCountText;
+    private static AnimationTimer timer;
 
-
+    /**
+     * constructor which creates the media player and sets the starting value for the volume
+     */
     public App(){
         //TODO: delete later ----------------------------------------------------
         setVolume(0.1);
@@ -47,15 +53,21 @@ public class App extends Application  {
         mediaPlayer.play();
     }
 
-    private static AnimationTimer timer;
     @Override
     public void start(Stage primaryStage) throws Exception {
     }
 
+    /**
+     * stops the animation timer
+     */
     public static void stopGame(){
         timer.stop();
     }
 
+    /**
+     * starts the gaming process
+     * @throws Exception exception
+     */
     public void launch() throws Exception {
         Scene scene = new Scene(createPanel());
         primaryStage.setScene(scene);
@@ -78,6 +90,11 @@ public class App extends Application  {
             }
         });
     }
+
+    /**
+     * creates the main gaming screen
+     * @return gaming panel
+     */
     private Parent createPanel(){
         Rectangle bg = new Rectangle(1000,1000);
         root = new Pane();
@@ -135,24 +152,41 @@ public class App extends Application  {
 
     }
 
+    /**
+     * @return window width
+     */
     public static int getWIDTH() {
         return WIDTH;
     }
 
+    /**
+     * @return window height
+     */
     public static int getHEIGHT() {
         return HEIGHT;
     }
 
+    /**
+     * @return main pane
+     */
     public static Pane getRoot() {
         return root;
     }
 
+    /**
+     * causes creating of the main menu
+     */
     public void initMainMenu(){
         Scene scene = new Scene(createMenu());
         primaryStage.setScene(scene);
         primaryStage.show();
 
     }
+
+    /**
+     * creates the main menu screen
+     * @return main menu screen
+     */
     public Parent createMenu(){
         Pane menu = new Pane();
         menu.setPrefSize(1000,700);
@@ -240,36 +274,67 @@ public class App extends Application  {
         return menu;
     }
 
+    /**
+     * @return current volume value
+     */
     public static double getVolume() {
         return volume;
     }
 
+    /**
+     * @param volume new volume value
+     */
     public static void setVolume(double volume) {
         App.volume = volume;
     }
 
+    /**
+     * @return App class object
+     */
     public static App getApp() {
         return app;
     }
 
+    /**
+     * @return AnimationTimer
+     */
     public static AnimationTimer getTimer() {
         return timer;
     }
 
+    /**
+     * @return MediaPlayer
+     */
     public MediaPlayer getMediaPlayer() {
         return mediaPlayer;
     }
 
+    /**
+     * changes the score on the screen
+     */
     public static void updateScore(){
         scoreText.setText("Score: "+LevelManager.getManager().getScore()+"     Lvl: "+LevelManager.getManager().getLevel());
     }
 
+    /**
+     * changes the rockets counter on the screen
+     */
     public static void updateRocketsCount(){
         rocketsCountText.setText(Integer.toString(LevelManager.getManager().getRocketsNumber()));
     }
 
+    /**
+     * remove one life
+     */
     public static void removeLife(){
         App.getRoot().getChildren().remove(lives.get(lives.size()-1));
         lives.remove(lives.size()-1);
+    }
+
+    /**
+     * @return primary stage
+     */
+    public Stage getPrimaryStage() {
+        return primaryStage;
     }
 }
