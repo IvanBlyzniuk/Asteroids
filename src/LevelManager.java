@@ -410,6 +410,8 @@ public class LevelManager extends GameObject{
     }
 
     public void removeLife(){
+
+
         if(lives > 0){
             player.setProtectionTimer(60);
             App.removeLife();

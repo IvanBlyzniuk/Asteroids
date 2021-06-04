@@ -1,3 +1,8 @@
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
+
+import java.io.File;
+
 public class SpaceShip extends GameObject{
     private boolean vulnerable = true;
     private double acceleration = 1.1;
@@ -51,9 +56,12 @@ public class SpaceShip extends GameObject{
     public void onCollision(GameObject other){
         if(other.getTag().contains(Tag.asteroid)&&vulnerable){
             LevelManager.getManager().removeLife();
-//            App.stopGame();
-//            GameEngine.setNeedToCleanScreen(true);
-//            LevelManager.getManager().gameOver();
+            //Spaceship_crash.mp3
+            String musicFile = "Sounds\\Spaceship_crash.mp3";
+            Media sound = new Media(new File(musicFile).toURI().toString());
+            MediaPlayer mediaPlayer = new MediaPlayer(sound);
+            mediaPlayer.setVolume(App.getVolume()*2);
+            mediaPlayer.play();
         }else if(other.getTag().contains(Tag.asteroid)){
 
         } else if(other.getTag().contains(Tag.astronaut)){
