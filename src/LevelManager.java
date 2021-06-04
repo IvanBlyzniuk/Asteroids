@@ -266,6 +266,9 @@ public class LevelManager extends GameObject{
      */
     public void onUpPressed(){
         shipSoundPlayer.setVolume(App.getVolume()/2);
+        //TODO: cycle through 2 different sprites --------------------------
+        player.setSprite("Sprites\\spaceship_alt.png");
+
         if(shipSoundPlayer.getCurrentTime().toMillis()>3400){
             shipSoundPlayer = new MediaPlayer(new Media(new File("Sounds\\SpaceShip_move.mp3").toURI().toString()));
         }
@@ -280,6 +283,7 @@ public class LevelManager extends GameObject{
      */
     public void onUpReleased(){
         shipSoundPlayer.stop();
+        player.setSprite("Sprites\\spaceship.png");
     }
 
     /**
