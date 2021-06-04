@@ -4,6 +4,9 @@ import java.util.ArrayList;
 
 import java.util.Stack;
 
+/**
+ * GameEngine class responsible for creating, updating, deleting GameObjects, checking for collisions
+ */
 public class GameEngine {
 
     public static final int frameLength = 16;
@@ -23,12 +26,18 @@ public class GameEngine {
 
     }
 
+    /**
+     * Starts the engine, starting the game process, should be called when the start button is pressed
+     */
     public static void startGame(){
         needToCleanScreen = false;
         LevelManager.initManager();
         manager = LevelManager.getManager();
     }
 
+    /**
+     * updates, adds, deletes GameObjects and checks for collisions, should be called every frame
+     */
     public static void update(){
         for (GameObject obj: gameObjects){
             obj.outerUpdate();
@@ -49,10 +58,18 @@ public class GameEngine {
         if(needToCleanScreen) cleanScreen();
     }
 
+    /**
+     * Setter for needToCleanScreen variable should be called when the player exits to main menu or dies
+     * @param needToCleanScreen
+     */
     public static void setNeedToCleanScreen(boolean needToCleanScreen) {
         GameEngine.needToCleanScreen = needToCleanScreen;
     }
 
+    /**
+     * checks collisions for obj1 by measuring the distance between it and all other GameObjects and comparing it to sum of their HitBoxSizes
+     * @param obj1
+     */
     private static void checkCollisions(GameObject obj1) {
         if(gameObjects.size()>0) {
             boolean foundCollision = false;
@@ -77,28 +94,44 @@ public class GameEngine {
 
     }
 
+    /**
+     * measures distance between obj1 and obj2 centres
+     * @param obj1 first object
+     * @param obj2 second object
+     * @return distance between obj1 and obj2 centres
+     */
     private static double distBetween(GameObject obj1, GameObject obj2){
         return Math.sqrt((obj1.getCentreX()-obj2.getCentreX())*(obj1.getCentreX()-obj2.getCentreX()) + (obj1.getCentreY()-obj2.getCentreY())*(obj1.getCentreY()-obj2.getCentreY()));
     }
 
-    public static void stopGame(){
-
-    }
-
+    /**
+     * Removes an object
+     * @param obj object that needs to be removed
+     */
     public static void remove(GameObject obj){
 //        gameObjects.remove(obj);
         toDelete.add(obj);
     }
 
+    /**
+     *
+     * @return the GameEngine object
+     */
      public static GameEngine getEngine(){
         return theEngine;
      }
 
+    /**
+     * Adds an object
+     * @param gameObject object that needs to be added
+     */
     public static void addGameObject(GameObject gameObject) {
         toAdd.add(gameObject);
-//        gameObjects.add(gameObject);
     }
 
+    /**
+     * Cleans screen removing all the object sprites
+     */
     public static void cleanScreen(){
         for (GameObject obj: gameObjects) {
             if(!toDelete.contains(obj));
