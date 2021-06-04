@@ -18,9 +18,11 @@ public class LevelManager extends GameObject{
     public static final Random random = new Random();
     private int asteroidsNumber = 0;
     private boolean timerStopped = false;
-    private int asteroidsMaxNumber = 7;
+    private int asteroidsMaxNumber = 5;
     private int astronautsNumber = 0;
     private int astronautsMaxNumber = 1;
+    private static int lives = 3;
+    private int level = 1;
 
     private static int pickupSpawnCooldown;
 
@@ -38,6 +40,7 @@ public class LevelManager extends GameObject{
 
     public static void initManager() {
         theManager = new LevelManager();
+        lives = 3;
     }
 
     @Override
@@ -53,8 +56,9 @@ public class LevelManager extends GameObject{
 
     @Override
     public void update() {
-
-//        System.out.println("Spaceship coords x = "+player.getX()+" y = "+player.getY());
+        App.updateScore();
+        App.updateRocketsCount();
+        checkLevel();
 
         if(pickupSpawnCooldown > 0){
             pickupSpawnCooldown--;
@@ -246,6 +250,9 @@ public class LevelManager extends GameObject{
     public void onShiftPressed(){
         if(player.getRechargeTimer()<=0){
             if(player.getInfiniteRocketsTimer()>0||player.getRocketsNumber()>0) {
+                if(player.getInfiniteRocketsTimer()<=0) {
+                    player.setRocketsNumber(player.getRocketsNumber() - 1);
+                }
                 Rocket rocket = new Rocket();
                 player.setRechargeTimer(50);
                 rocket.moveCentreTo(player.getCentreX(), player.getCentreY());
@@ -396,5 +403,55 @@ public class LevelManager extends GameObject{
 
     public void setAstronautsNumber(int astronautsNumber) {
         this.astronautsNumber = astronautsNumber;
+    }
+
+    public int getRocketsNumber(){
+        return (int)player.getRocketsNumber();
+    }
+
+    public void removeLife(){
+        if(lives > 0){
+            player.setProtectionTimer(60);
+            App.removeLife();
+            lives--;
+        }else{
+            App.stopGame();
+            GameEngine.setNeedToCleanScreen(true);
+            LevelManager.getManager().gameOver();
+        }
+    }
+    public void checkLevel(){
+        if(score<50){
+            level = 1;
+            asteroidsMaxNumber = 5;
+        }
+        if(score>50 && level == 1){
+            level = 2;
+            asteroidsMaxNumber = 7;
+            System.out.println(level);
+            System.out.println(asteroidsMaxNumber);
+        }
+        if(score>100 && level == 2){
+            level = 3;
+            asteroidsMaxNumber = 10;
+            System.out.println(level);
+            System.out.println(asteroidsMaxNumber);
+        }
+        if(score>200 && level == 3){
+            level = 4;
+            asteroidsMaxNumber = 13;
+            System.out.println(level);
+            System.out.println(asteroidsMaxNumber);
+        }
+        if(score>350 && level == 4){
+            level = 5;
+            asteroidsMaxNumber = 15;
+            System.out.println(level);
+            System.out.println(asteroidsMaxNumber);
+        }
+    }
+
+    public int getLevel() {
+        return level;
     }
 }
