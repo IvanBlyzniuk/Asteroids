@@ -59,7 +59,6 @@ public class SpaceShip extends GameObject{
     public void onCollision(GameObject other){
         if(other.getTag().contains(Tag.asteroid)&&vulnerable){
             LevelManager.getManager().removeLife();
-            //Spaceship_crash.mp3
             String musicFile = "Sounds\\Spaceship_crash.mp3";
             Media sound = new Media(new File(musicFile).toURI().toString());
             MediaPlayer mediaPlayer = new MediaPlayer(sound);

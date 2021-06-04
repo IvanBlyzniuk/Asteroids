@@ -2,6 +2,9 @@ import javafx.application.Application;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
+/**
+ * Main Class that creates a window
+ */
 public class MainMenu extends Application {
 
     @Override

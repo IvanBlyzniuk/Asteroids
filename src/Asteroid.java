@@ -1,5 +1,12 @@
 import javafx.geometry.Point2D;
 
+/**
+ * Class asteroid that is flying through the screen with constant speed.
+ * If it leaves the screen it will come out of the other side.
+ * Collides with other asteroids and astronauts according to circle colliding physics
+ * Big asteroids can split in several smaller pieces if broken by rocket or bullet
+ * Big asteroids sometimes drop pickups
+ */
 public class Asteroid extends GameObject{
 
     private Point2D newSpeed;
