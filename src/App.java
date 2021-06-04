@@ -85,7 +85,7 @@ public class App extends Application  {
         root.getChildren().add(bg);
 
         scoreText = new Text("Score: ");
-        scoreText.setX(getWIDTH()/2-50);
+        scoreText.setX(getWIDTH()/2-110);
         scoreText.setY(40);
         scoreText.setFont(new Font(25));
         scoreText.setFill(Color.web("ffcc00"));
@@ -261,7 +261,7 @@ public class App extends Application  {
     }
 
     public static void updateScore(){
-        scoreText.setText("Score: "+LevelManager.getManager().getScore());
+        scoreText.setText("Score: "+LevelManager.getManager().getScore()+"     Lvl: "+LevelManager.getManager().getLevel());
     }
 
     public static void updateRocketsCount(){
