@@ -50,7 +50,18 @@ public abstract class GameObject {
      * @param url url to the sprite image in file system
      */
     public void setSprite(String url){
-        sprite = new ImageView(new Image(url));
+        ImageView oldsprite = sprite;
+        if(sprite!= null){
+            App.getRoot().getChildren().remove(sprite);
+            sprite = new ImageView(new Image(url));
+            sprite.setFitHeight(oldsprite.getFitHeight());
+            sprite.setFitWidth(oldsprite.getFitWidth());
+            sprite.setRotate(oldsprite.getRotate());
+            sprite.setX(oldsprite.getX());
+            sprite.setY(oldsprite.getY());
+        }else{
+            sprite = new ImageView(new Image(url));
+        }
         App.getRoot().getChildren().add(sprite);
     }
 

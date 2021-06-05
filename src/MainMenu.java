@@ -11,6 +11,5 @@ public class MainMenu extends Application {
     public void start(Stage primaryStage) throws Exception {
         App.getApp().getPrimaryStage().setResizable(false);
         App.getApp().initMainMenu();
-
     }
 }

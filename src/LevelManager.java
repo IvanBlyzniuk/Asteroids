@@ -266,6 +266,9 @@ public class LevelManager extends GameObject{
      */
     public void onUpPressed(){
         shipSoundPlayer.setVolume(App.getVolume()/2);
+        //TODO: cycle through 2 different sprites --------------------------
+        player.setSprite("Sprites\\spaceship_alt.png");
+
         if(shipSoundPlayer.getCurrentTime().toMillis()>3400){
             shipSoundPlayer = new MediaPlayer(new Media(new File("Sounds\\SpaceShip_move.mp3").toURI().toString()));
         }
@@ -280,6 +283,7 @@ public class LevelManager extends GameObject{
      */
     public void onUpReleased(){
         shipSoundPlayer.stop();
+        player.setSprite("Sprites\\spaceship.png");
     }
 
     /**
@@ -537,26 +541,18 @@ public class LevelManager extends GameObject{
         if(score>50 && level == 1){
             level = 2;
             asteroidsMaxNumber = 7;
-            System.out.println(level);
-            System.out.println(asteroidsMaxNumber);
         }
         if(score>100 && level == 2){
             level = 3;
             asteroidsMaxNumber = 10;
-            System.out.println(level);
-            System.out.println(asteroidsMaxNumber);
         }
         if(score>200 && level == 3){
             level = 4;
             asteroidsMaxNumber = 13;
-            System.out.println(level);
-            System.out.println(asteroidsMaxNumber);
         }
         if(score>350 && level == 4){
             level = 5;
             asteroidsMaxNumber = 15;
-            System.out.println(level);
-            System.out.println(asteroidsMaxNumber);
         }
     }
 

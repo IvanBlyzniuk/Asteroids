@@ -1,6 +1,9 @@
+/**
+ * class which describes the dust
+ */
 public class Dust extends GameObject{
     private int timeToLive;
-    private static final int maxTimeToLive = 12;
+    private static final int maxTimeToLive = 20;
     @Override
     public void init() {
         timeToLive = maxTimeToLive;
@@ -11,13 +14,8 @@ public class Dust extends GameObject{
     public void update() {
         if(timeToLive <= 0){
             remove();
-        }else if(timeToLive==8){
-            timeToLive--;
-            setSprite("Sprites\\Dust_2.png");
-        }else if(timeToLive==4){
-            timeToLive--;
-            setSprite("Sprites\\Dust_3.png");
         }else {
+            getSprite().setOpacity(0.05*timeToLive);
             timeToLive--;
         }
     }

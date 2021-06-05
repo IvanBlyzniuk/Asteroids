@@ -14,8 +14,8 @@ public class Explosion extends GameObject{
     public void init() {
         timeToLive = maxTimeToLive;
         setSprite("Sprites\\explosion.png");
-        getSprite().setFitWidth(200);
-        getSprite().setFitHeight(200);
+        getSprite().setFitWidth(100);
+        getSprite().setFitHeight(100);
         setTag(Tag.explosion);
         setHitBoxSize(100);
         String musicFile = "Sounds\\Explosion.mp3";

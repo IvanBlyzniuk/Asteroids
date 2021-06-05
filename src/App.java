@@ -42,9 +42,7 @@ public class App extends Application  {
      * constructor which creates the media player and sets the starting value for the volume
      */
     public App(){
-        //TODO: delete later ----------------------------------------------------
         setVolume(0.1);
-
         String musicFile = "Sounds\\Soundtrack.mp3";
         Media sound = new Media(new File(musicFile).toURI().toString());
         mediaPlayer = new MediaPlayer(sound);
