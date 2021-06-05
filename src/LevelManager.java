@@ -27,6 +27,9 @@ public class LevelManager extends GameObject{
     private static int lives = 3;
     private int level = 1;
 
+    private String spaceship_flying_1 = "Sprites\\spaceship_flying_1.png";
+    private String spaceship_flying_2 = "Sprites\\spaceship_flying_2.png";
+
     private static int pickupSpawnCooldown;
 
     private static final int shotRechargeTime = 20;
@@ -261,13 +264,24 @@ public class LevelManager extends GameObject{
         }
     }
 
+    private boolean fireState_1;
+    private int timeAfterStateChanged;
+
     /**
      * makes the player move
      */
     public void onUpPressed(){
         shipSoundPlayer.setVolume(App.getVolume()/2);
-        //TODO: cycle through 2 different sprites --------------------------
-        player.setSprite("Sprites\\spaceship_alt.png");
+        if(timeAfterStateChanged > 3){
+            timeAfterStateChanged = 0;
+            if(fireState_1){
+                player.setSprite(spaceship_flying_2);
+            }else{
+                player.setSprite(spaceship_flying_1);
+            }
+            fireState_1 = !fireState_1;
+        }
+        timeAfterStateChanged++;
 
         if(shipSoundPlayer.getCurrentTime().toMillis()>3400){
             shipSoundPlayer = new MediaPlayer(new Media(new File("Sounds\\SpaceShip_move.mp3").toURI().toString()));
@@ -282,8 +296,10 @@ public class LevelManager extends GameObject{
      * stops moving sound and moving
      */
     public void onUpReleased(){
+//        player.getSprite().setFitHeight(50);
         shipSoundPlayer.stop();
-        player.setSprite("Sprites\\spaceship.png");
+        if(GameEngine.isPlaying)
+            player.setSprite("Sprites\\spaceship_new.png");
     }
 
     /**
@@ -561,5 +577,12 @@ public class LevelManager extends GameObject{
      */
     public int getLevel() {
         return level;
+    }
+
+    /**
+     * @return the player
+     */
+    public SpaceShip getPlayer(){
+        return player;
     }
 }

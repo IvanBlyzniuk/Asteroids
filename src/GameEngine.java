@@ -22,6 +22,8 @@ public class GameEngine {
 
     private static boolean needToCleanScreen;
 
+    public static boolean isPlaying = true;
+
     private GameEngine(){
 
     }
@@ -30,6 +32,7 @@ public class GameEngine {
      * Starts the engine, starting the game process, should be called when the start button is pressed
      */
     public static void startGame(){
+        isPlaying = true;
         needToCleanScreen = false;
         LevelManager.initManager();
         manager = LevelManager.getManager();
@@ -133,6 +136,7 @@ public class GameEngine {
      * Cleans screen removing all the object sprites
      */
     public static void cleanScreen(){
+        isPlaying = false;
         for (GameObject obj: gameObjects) {
             if(!toDelete.contains(obj));
             remove(obj);
