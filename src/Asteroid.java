@@ -54,6 +54,12 @@ public class Asteroid extends GameObject{
             if(other.getTag().contains(Tag.bullet))
                 GameEngine.remove(other);
             int pickupChance = LevelManager.random.nextInt(2);
+            Dust dust = new Dust();
+            dust.setX(this.getX());
+            dust.setY(this.getY());
+            dust.getSprite().setFitWidth(this.getSprite().getFitWidth());
+            dust.getSprite().setFitHeight(this.getSprite().getFitHeight());
+
             if(pickupChance == 0 && LevelManager.getPickupSpawnCooldown() <= 0 && LevelManager.getManager().isCanSpawnPickup()){
                 LevelManager.getManager().createPickup(getCentreX(),getCentreY());
                 LevelManager.getManager().setCanSpawnPickup(false);

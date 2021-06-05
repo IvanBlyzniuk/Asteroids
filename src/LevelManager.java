@@ -193,7 +193,7 @@ public class LevelManager extends GameObject{
      */
     public void gameOver(){
         Font font = Font.font(52);
-        ImageView gameOverBackground = new ImageView(new Image("Sprites\\buttonBackground.jfif"));
+        ImageView gameOverBackground = new ImageView(new Image("Sprites\\Background.jfif"));
         gameOverBackground.setFitWidth(App.getWIDTH());
         gameOverBackground.setFitHeight(App.getHEIGHT());
         gameOverBackground.setX(0);

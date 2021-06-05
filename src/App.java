@@ -96,7 +96,11 @@ public class App extends Application  {
      * @return gaming panel
      */
     private Parent createPanel(){
-        Rectangle bg = new Rectangle(1000,1000);
+        ImageView bg = new ImageView(new Image("Sprites\\Background.png"));
+        bg.setX(0);
+        bg.setY(0);
+        bg.setFitWidth(App.getWIDTH());
+        bg.setFitHeight(App.getHEIGHT());
         root = new Pane();
         root.setPrefSize(WIDTH,HEIGHT);
         root.getChildren().add(bg);
@@ -190,7 +194,11 @@ public class App extends Application  {
     public Parent createMenu(){
         Pane menu = new Pane();
         menu.setPrefSize(1000,700);
-        Rectangle bg = new Rectangle(1000,1000);
+        ImageView bg = new ImageView(new Image("Sprites\\Background.png"));
+        bg.setX(0);
+        bg.setY(0);
+        bg.setFitWidth(App.getWIDTH());
+        bg.setFitHeight(App.getHEIGHT());
         Font font = Font.font(52);
         Button start = new Button("Start");
         BackgroundImage backgroundImage = new BackgroundImage( new Image( "Sprites\\buttonBackground.jfif"), BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
