@@ -17,9 +17,9 @@ public class SpaceShip extends GameObject{
     private double rocketsNumber = 10;
 
     public void init(){
-        setSprite("Sprites\\SpaceShip.png");
+        setSprite("Sprites\\spaceship_new.png");
         getSprite().setFitWidth(50);
-        getSprite().setFitHeight(50);
+        getSprite().setFitHeight(70);
         setHitBoxSize(20);
         moveCentreTo(App.getWIDTH()/2,App.getHEIGHT()/2);
         setTag(Tag.player);
@@ -27,7 +27,6 @@ public class SpaceShip extends GameObject{
 
     @Override
     public void update() {
-        vulnerable = protectionTimer <= 0;
 
         if(rechargeTimer>0){
             rechargeTimer--;
@@ -39,8 +38,14 @@ public class SpaceShip extends GameObject{
             infiniteRocketsTimer--;
         }
         if(protectionTimer>0){
+            if(vulnerable){
+                Shield shield = new Shield();
+                shield.setTimeTolive((int)protectionTimer);
+            }
             protectionTimer--;
         }
+
+        vulnerable = protectionTimer <= 0;
 
         if(getX()<-70){
             setX(App.getWIDTH()+70);
