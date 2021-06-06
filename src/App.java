@@ -182,7 +182,6 @@ public class App extends Application  {
         Scene scene = new Scene(createMenu());
         primaryStage.setScene(scene);
         primaryStage.show();
-
     }
 
     /**
@@ -190,8 +189,10 @@ public class App extends Application  {
      * @return main menu screen
      */
     public Parent createMenu(){
+        primaryStage.setWidth(getWIDTH()+6);
+        primaryStage.setHeight(getHEIGHT()+29);
         Pane menu = new Pane();
-        menu.setPrefSize(1000,700);
+        menu.setPrefSize(App.getWIDTH(),App.getHEIGHT());
         ImageView bg = new ImageView(new Image("Sprites\\Background.png"));
         bg.setX(0);
         bg.setY(0);
