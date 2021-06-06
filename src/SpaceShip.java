@@ -14,7 +14,7 @@ public class SpaceShip extends GameObject{
     private double infiniteRocketsTimer = 0;
     private double tripleShotTimer = 0;
     private double protectionTimer = 0;
-    private double rocketsNumber = 10;
+    private double rocketsNumber = 3;
 
     public void init(){
         setSprite("Sprites\\spaceship_new.png");
