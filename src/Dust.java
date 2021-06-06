@@ -1,5 +1,5 @@
 /**
- * class which describes the dust
+ * class which describes the dust left by asteroids
  */
 public class Dust extends GameObject{
     private int timeToLive;

@@ -4,7 +4,8 @@ import javafx.scene.media.MediaPlayer;
 import java.io.File;
 
 /**
- * class which describes the player`s spaceship
+ * class which describes the player`s spaceship.If it leaves the screen it will come out of the other side.
+ * It has different timers for pickups` activities.
  */
 public class SpaceShip extends GameObject{
     private boolean vulnerable = true;

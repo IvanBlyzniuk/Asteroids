@@ -1,5 +1,5 @@
 /**
- * class which describes the bullet
+ * class which describes the bullet which can destroy asteroids and kill astronauts
  */
 public class Bullet extends GameObject{
     @Override

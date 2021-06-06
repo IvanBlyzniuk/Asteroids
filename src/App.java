@@ -199,10 +199,12 @@ public class App extends Application  {
         bg.setFitHeight(App.getHEIGHT());
         Font font = Font.font(52);
         Button start = new Button("Start");
-        BackgroundImage backgroundImage = new BackgroundImage( new Image( "Sprites\\buttonBackground.jfif"), BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
+        BackgroundImage backgroundImage = new BackgroundImage( new Image( "Sprites\\Button_bg.png"), BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, new BackgroundSize(300,100,false,false,false,false));
         Background background = new Background(backgroundImage);
         start.setBackground(background);
+        start.setTextFill(Color.web("ffffff"));
         start.setPrefWidth(300);
+        start.setPrefHeight(100);
         start.setTranslateX(350);
         start.setTranslateY(350);
         start.setFont(font);
@@ -219,6 +221,7 @@ public class App extends Application  {
         exit.setTranslateX(350);
         exit.setTranslateY(490);
         exit.setFont(font);
+        exit.setTextFill(Color.web("ffffff"));
         exit.setOnAction(event -> {
             try {
                 primaryStage.close();
@@ -227,9 +230,12 @@ public class App extends Application  {
             }
         });
         Button plus = new Button("+");
-        //plus.setBackground(background);
         plus.setPrefWidth(50);
         plus.setPrefHeight(50);
+        plus.setStyle("-fx-background-color: Orange");
+//        BackgroundImage backgroundImage1 = new BackgroundImage( new Image( "Sprites\\test.png"), BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, new BackgroundSize(50,50,false,false,false,false));
+//        Background background1 = new Background(backgroundImage1);
+//        plus.setBackground(background1);
         plus.setTranslateX(155);
         plus.setTranslateY(540);
         plus.setFont(new Font(20));
@@ -244,7 +250,8 @@ public class App extends Application  {
             }
         });
         Button minus = new Button("-");
-        //minus.setBackground(background);
+        minus.setStyle("-fx-background-color: Orange");
+      //  minus.setBackground(background1);
         minus.setPrefWidth(50);
         minus.setPrefHeight(50);
         minus.setTranslateX(45);
@@ -260,12 +267,12 @@ public class App extends Application  {
                 e.printStackTrace();
             }
         });
-        ImageView logo = new ImageView(new Image("Sprites\\logo.jfif"));
+        ImageView logo = new ImageView(new Image("Sprites\\Logo.png"));
         logo.setFitWidth(500);
         logo.setFitHeight(200);
         logo.setX(250);
         logo.setY(50);
-        ImageView volume = new ImageView(new Image("Sprites\\volume.jpg"));
+        ImageView volume = new ImageView(new Image("Sprites\\Sound.png"));
         volume.setFitWidth(50);
         volume.setFitHeight(50);
         volume.setX(100);

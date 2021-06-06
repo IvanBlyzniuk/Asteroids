@@ -202,16 +202,17 @@ public class LevelManager extends GameObject{
         gameOverBackground.setX(0);
         gameOverBackground.setY(0);
         App.getRoot().getChildren().add(gameOverBackground);
-        Text gameOver = new Text("Game Over");
-        gameOver.setFont(font);
-        gameOver.setFill(Color.web("fabbff"));
-        gameOver.setX(380);
-        gameOver.setY(100);
+        ImageView gameOver = new ImageView(new Image("Sprites\\GameOver.png"));
+        gameOver.setFitWidth(700);
+        gameOver.setFitHeight(150);
+        gameOver.setX((App.getWIDTH()-gameOver.getFitWidth())/2);
+        gameOver.setY(50);
         App.getRoot().getChildren().add(gameOver);
-        BackgroundImage backgroundImage = new BackgroundImage( new Image( "Sprites\\buttonBackground.jfif"), BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
+        BackgroundImage backgroundImage = new BackgroundImage( new Image( "Sprites\\Button_bg.png"), BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, new BackgroundSize(300,100,false,false,false,false));
         Background background = new Background(backgroundImage);
         javafx.scene.control.Button restart = new Button("Restart");
-       // restart.setBackground(background);
+        restart.setBackground(background);
+        restart.setTextFill(Color.web("ffffff"));
         restart.setPrefWidth(300);
         restart.setTranslateX(350);
         restart.setTranslateY(320);
@@ -224,7 +225,8 @@ public class LevelManager extends GameObject{
             }
         });
         javafx.scene.control.Button exit = new Button("Exit");
-       // exit.setBackground(background);
+        exit.setBackground(background);
+        exit.setTextFill(Color.web("ffffff"));
         exit.setPrefWidth(300);
         exit.setTranslateX(350);
         exit.setTranslateY(440);
@@ -352,17 +354,29 @@ public class LevelManager extends GameObject{
             App.getTimer().stop();
             timerStopped=true;
             ImageView bg = new ImageView(new Image("Sprites\\pause_screen.png"));
+            BackgroundImage backgroundImage = new BackgroundImage( new Image( "Sprites\\Button_bg.png"), BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, new BackgroundSize(300,100,false,false,false,false));
+            Background background = new Background(backgroundImage);
             bg.setFitHeight(App.getHEIGHT());
             bg.setFitWidth(App.getWIDTH());
             App.getRoot().getChildren().add(bg);
+            ImageView pause = new ImageView(new Image("Sprites\\Pause.png"));
+            pause.setFitWidth(400);
+            pause.setFitHeight(150);
+            pause.setX((App.getWIDTH()-pause.getFitWidth())/2);
+            pause.setY(30);
+            App.getRoot().getChildren().add(pause);
             Button cont = new Button("Continue");
+            cont.setBackground(background);
+            cont.setTextFill(Color.web("ffffff"));
             cont.setFont(new Font(50));
             cont.setPrefWidth(300);
             cont.setTranslateX(350);
-            cont.setTranslateY(200);
+            cont.setTranslateY(250);
             App.getRoot().getChildren().add(cont);
             Button exit = new Button("Exit");
             exit.setFont(new Font(50));
+            exit.setBackground(background);
+            exit.setTextFill(Color.web("ffffff"));
             exit.setPrefWidth(300);
             exit.setTranslateX(350);
             exit.setTranslateY(400);
@@ -373,6 +387,7 @@ public class LevelManager extends GameObject{
             plus.setPrefHeight(50);
             plus.setTranslateX(155);
             plus.setTranslateY(540);
+            plus.setStyle("-fx-background-color: Orange");
             plus.setFont(new Font(20));
             plus.setOnAction(event -> {
                 try {
@@ -390,6 +405,7 @@ public class LevelManager extends GameObject{
             minus.setPrefHeight(50);
             minus.setTranslateX(45);
             minus.setTranslateY(540);
+            minus.setStyle("-fx-background-color: Orange");
             minus.setFont(new Font(20));
             minus.setOnAction(event -> {
                 try {
@@ -401,7 +417,7 @@ public class LevelManager extends GameObject{
                     e.printStackTrace();
                 }
             });
-            ImageView volume = new ImageView(new Image("Sprites/volume.jpg"));
+            ImageView volume = new ImageView(new Image("Sprites/Sound.png"));
             volume.setFitWidth(50);
             volume.setFitHeight(50);
             volume.setX(100);
@@ -409,6 +425,7 @@ public class LevelManager extends GameObject{
             cont.setOnAction(event -> {
                 try {
                     App.getRoot().getChildren().remove(bg);
+                    App.getRoot().getChildren().remove(pause);
                     App.getRoot().getChildren().remove(cont);
                     App.getRoot().getChildren().remove(exit);
                     App.getRoot().getChildren().remove(plus);

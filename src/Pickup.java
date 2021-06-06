@@ -1,5 +1,5 @@
 /**
- * class which describes all three types of pickups
+ * class which describes all three types of pickups and rockets pickup
  */
 public class Pickup extends GameObject{
 
