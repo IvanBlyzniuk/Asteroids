@@ -208,6 +208,12 @@ public class LevelManager extends GameObject{
         gameOver.setX((App.getWIDTH()-gameOver.getFitWidth())/2);
         gameOver.setY(50);
         App.getRoot().getChildren().add(gameOver);
+        Text scoreText = new Text("Score: "+getScore());
+        scoreText.setX(App.getWIDTH()/2-90);
+        scoreText.setY(270);
+        scoreText.setFont(new Font(50));
+        scoreText.setFill(Color.web("ffcc00"));
+        App.getRoot().getChildren().add(scoreText);
         BackgroundImage backgroundImage = new BackgroundImage( new Image( "Sprites\\Button_bg.png"), BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, new BackgroundSize(300,100,false,false,false,false));
         Background background = new Background(backgroundImage);
         javafx.scene.control.Button restart = new Button("Restart");
