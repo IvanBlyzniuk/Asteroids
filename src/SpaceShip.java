@@ -4,7 +4,8 @@ import javafx.scene.media.MediaPlayer;
 import java.io.File;
 
 /**
- * class which describes the player`s spaceship
+ * class which describes the player`s spaceship.If it leaves the screen it will come out of the other side.
+ * It has different timers for pickups` activities.
  */
 public class SpaceShip extends GameObject{
     private boolean vulnerable = true;
@@ -14,7 +15,7 @@ public class SpaceShip extends GameObject{
     private double infiniteRocketsTimer = 0;
     private double tripleShotTimer = 0;
     private double protectionTimer = 0;
-    private double rocketsNumber = 10;
+    private double rocketsNumber = 3;
 
     public void init(){
         setSprite("Sprites\\spaceship_new.png");

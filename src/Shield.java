@@ -1,5 +1,7 @@
 public class Shield extends GameObject{
-
+    /**
+     * class which describes the shield which protects the player from taking damage
+     */
     private int timeToLive;
 
     @Override

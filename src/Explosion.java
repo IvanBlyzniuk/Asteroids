@@ -32,6 +32,7 @@ public class Explosion extends GameObject{
         if(timeToLive <= 0){
             remove();
         }else {
+            getSprite().setOpacity(0.1*timeToLive);
             timeToLive--;
         }
     }
